@@ -1,0 +1,15 @@
+export const COLORS = {
+  areia: "#faf3dd",
+  verdeClaro: "#c8d589",
+  verdeRio: "#8fc0a9",
+  azulRio: "#68b0ab",
+  azulRioEscuro: "#487673",
+  verdeEscuro: "#4a7c59",
+  bege: "#deb887",
+  marrom: "#9b6532",
+  xDarkGray: "#3f3f3f",
+  darkGray: "#6b6b6b",
+  gray: "#acacac",
+  lightGray: "#d9d9d9",
+  xLightGray: "#f0f0f0",
+};
