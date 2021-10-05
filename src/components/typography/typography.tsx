@@ -54,13 +54,13 @@ export const LinkText = styled.text`
 export const Body = styled.text`
   color: ${(props: TypographyProps) =>
     props.white ? COLORS.xLightGray : COLORS.xDarkGray};
-  font-family: "Montserrat", sans serif;
+  font-family: "Montserrat", regular;
   font-size: 18px;
 `;
 
 export const BodySecondary = styled.text`
   color: ${(props: TypographyProps) =>
     props.white ? COLORS.xLightGray : COLORS.xDarkGray};
-  font-family: "Montserrat", sans serif;
+  font-family: "Montserrat", regular;
   font-size: 14px;
 `;
