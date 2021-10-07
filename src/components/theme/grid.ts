@@ -16,5 +16,5 @@ interface ColProps {
 
 export const Col = styled.div`
   ${(props: ColProps) => props.size ?? `flex: ${props.size}`}
-  align-items: flex-start;
+  align-items: center;
 `;

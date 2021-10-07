@@ -1,9 +1,9 @@
 import "./App.css";
 
-import { UserPage } from "./UserPage";
+import { MainPage } from "./MainPage";
 
 function App() {
-  return <UserPage />;
+  return <MainPage />;
 }
 
 export default App;
