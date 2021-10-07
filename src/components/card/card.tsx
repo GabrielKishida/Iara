@@ -26,7 +26,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = (props) => {
         <Col>
           <H3 white>{props.title}</H3>
           <VSeparator half />
-
           {props.role && (
             <div>
               <H4 white>{props.role}</H4>

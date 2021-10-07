@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { COLORS, SPACING } from "../theme";
 
 export const CardContainer = styled.div`
-  class: "flex-container";
   background-color: ${COLORS.verdeEscuro};
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;

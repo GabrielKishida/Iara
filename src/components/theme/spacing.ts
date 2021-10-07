@@ -15,12 +15,12 @@ interface SeparatorProps {
   half?: boolean;
 }
 
-export const VSeparator = styled.section`
+export const VSeparator = styled.div`
   height: ${(props: SeparatorProps) =>
     props.half ? SPACING.small : SPACING.large}px;
 `;
 
-export const HSeparator = styled.section`
+export const HSeparator = styled.div`
   width: ${(props: SeparatorProps) =>
     props.half ? SPACING.small : SPACING.large}px;
 `;
