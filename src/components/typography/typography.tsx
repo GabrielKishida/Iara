@@ -3,6 +3,7 @@ import { COLORS } from "../theme";
 
 interface TypographyProps {
   white?: boolean;
+  bold?: boolean;
 }
 
 export const H1 = styled.text`
@@ -67,6 +68,8 @@ export const Body = styled.text`
 
 export const BodyHeader = styled.text`
   color: ${COLORS.areia};
+  font-weight: ${(props: TypographyProps) =>
+    props.bold ? "bold" : "normal"};
   font-family: "Montserrat", regular;
   font-size: 18px;
   margin: 5px;
