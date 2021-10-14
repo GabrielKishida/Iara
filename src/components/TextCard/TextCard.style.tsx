@@ -26,17 +26,3 @@ export const ImageCardContainer = styled(CardContainer)`
 export const ImageRow = styled(Row)`
     justify-content: center;
 `
-
-export const AnswerButton = styled.button`
-  class: "flex-container";
-  background-color: ${COLORS.verdeEscuro};
-  border-radius: ${SPACING.borderRadius}px;
-  padding: ${SPACING.medium}px;
-  flex-direction: row;
-  min-width: 100px;
-`;
-
-export const AnswerRow = styled(Row)`
-  justify-content: space-evenly;
-  margin: 15px 0px;
-`;
