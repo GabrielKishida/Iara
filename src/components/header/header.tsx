@@ -1,8 +1,15 @@
-import { H3, H4, H5, BodyHeader, PageTitle } from "../typography";
+import { H3, H4, H5 } from "../typography";
 import { VSeparator, HSeparator } from "../theme";
-import { HeaderContainer, LogoCircle, PerfilCircle, HeaderTextContainer } from "./header.style";
+import {
+  HeaderContainer,
+  LogoCircle,
+  PerfilCircle,
+  HeaderTextContainer,
+  HeaderLink,
+  HeaderTitleLink,
+} from "./header.style";
 import React from "react";
-import { Col, Row } from "../theme/grid";
+import { Row } from "../theme/grid";
 import { useState } from "react";
 
 interface HeaderConstitutionProps {
@@ -21,28 +28,28 @@ export const HeaderConstitution: React.FC<HeaderConstitutionProps> = (
 
   return (
     <HeaderContainer>
-      <Row>
-        <LogoCircle />
-        <HSeparator />
-        <PageTitle>Iara</PageTitle>
-        <HSeparator/>
-        <HSeparator />
+      <LogoCircle />
+      <HSeparator />
+      <HeaderTextContainer align="left">
+        <HeaderTitleLink>Iara</HeaderTitleLink>
+      </HeaderTextContainer>
+      <HSeparator />
+      <HSeparator />
 
-        {props.isLogged ? (
-          <div>
-            <BodyHeader>Perfil</BodyHeader>
-            <BodyHeader>Logout</BodyHeader>
-          </div>
-        ) : (
-          <HeaderTextContainer>
-            <BodyHeader>LogIn</BodyHeader>
-            <BodyHeader>Cadastro</BodyHeader>
-          </HeaderTextContainer>
-        )}
+      {props.isLogged ? (
+        <HeaderTextContainer>
+          <HeaderLink bold>Perfil</HeaderLink>
+          <HeaderLink bold>Logout</HeaderLink>
+        </HeaderTextContainer>
+      ) : (
+        <HeaderTextContainer>
+          <HeaderLink>Login</HeaderLink>
+          <HeaderLink bold>Cadastro</HeaderLink>
+        </HeaderTextContainer>
+      )}
 
-        <HSeparator />
-        <PerfilCircle />
-      </Row>
+      <HSeparator />
+      <PerfilCircle />
     </HeaderContainer>
   );
 };

@@ -3,9 +3,10 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { MainPage } from "./MainPage";
+import { UserPage } from "./UserPage";
 
 function App() {
-  return <MainPage />;
+  return <UserPage />;
 }
 
 export default App;

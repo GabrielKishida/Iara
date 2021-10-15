@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { COLORS, SPACING } from "../theme";
-import Nav from 'react-bootstrap/Nav'
-
+import Nav from "react-bootstrap/Nav";
 
 export const StyledNav = styled(Nav)`
   background-color: ${COLORS.xLightGray};
@@ -10,9 +9,6 @@ export const StyledNav = styled(Nav)`
   width: 100%;
 `;
 
-export const StyledItem = styled(Nav.Item)`
-`;
+export const StyledItem = styled(Nav.Item)``;
 
-export const StyledLink = styled(Nav.Link)`
-
-`;
+export const StyledLink = styled(Nav.Link)``;

@@ -6,30 +6,25 @@ import { JumbotronContainer } from "./jumbo.style";
 import { Row } from "../theme/grid";
 import { StyledButton } from "./jumbo.style";
 
-
 /**export const Header: React.FC: = (props) => {
   return <HeaderContainer>{props.children}</HeaderContainer>;
 };**/
 
-export const Jumbotron: React.FC = (
-  props
-) => {
-  
+export const Jumbotron: React.FC = (props) => {
   return (
     <JumbotronContainer>
-      <H3>Bach mais longe!!</H3>
-      <Row>
+      <H3>Bach mais longe!</H3>
+      <Row justifyContent={"flex-start"}>
         <Body>
-          Com os novos cursos da Iara aprender teoria musical 
-          se tornou muito mais legal
+          Com os novos cursos da Iara, aprender teoria musical se tornou muito
+          mais legal!
         </Body>
       </Row>
-      <Row>
+      <Row justifyContent={"flex-start"}>
         <StyledButton>
-          <BodyHeader bold>Comece Agora!</BodyHeader>
+          <BodyHeader bold> Comece Agora!</BodyHeader>
         </StyledButton>
       </Row>
     </JumbotronContainer>
   );
-
 };

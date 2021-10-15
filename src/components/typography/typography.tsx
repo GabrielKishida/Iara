@@ -30,13 +30,6 @@ export const H3 = styled.text`
   font-size: 48px;
 `;
 
-export const PageTitle = styled.text`
-  color: ${COLORS.areia};
-  font-family: "Roboto", sans serif;
-  font-weight: bold;
-  font-size: 30px;
-`;
-
 export const H4 = styled.text`
   color: ${(props: TypographyProps) =>
     props.white ? COLORS.xLightGray : COLORS.xDarkGray};
@@ -68,8 +61,7 @@ export const Body = styled.text`
 
 export const BodyHeader = styled.text`
   color: ${COLORS.areia};
-  font-weight: ${(props: TypographyProps) =>
-    props.bold ? "bold" : "normal"};
+  font-weight: ${(props: TypographyProps) => (props.bold ? "bold" : "normal")};
   font-family: "Montserrat", regular;
   font-size: 18px;
   margin: 5px;
