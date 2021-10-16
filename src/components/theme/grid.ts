@@ -28,6 +28,17 @@ export const DivLine = styled.div`
 `;
 
 export const Col = styled.div`
-  ${(props: ColProps) => props.size ?? `flex: ${props.size}`}
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  ${(props: ColProps) => props.size ?? `flex: ${props.size};`}
+`;
+
+export const VBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: ${SPACING.medium}px;
+  justify-content: flex-start;
+  align-self: center;
+  flex-wrap: wrap;
 `;
