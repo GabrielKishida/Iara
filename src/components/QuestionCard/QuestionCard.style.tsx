@@ -7,15 +7,14 @@ interface CardContainerProps {
   }
 
 export const CardContainer = styled.div<CardContainerProps>`
+  display: flex;
   class: "flex-container";
   background-color: ${({inputColor}) => inputColor};
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;
-  flex-direction: row;
-  width: 40%;
+  flex-direction: column;
   flex: 0 0 auto;
   justify-content: center;
-  padding: 150px, 150px;
 `;
 
 export const ImageCardContainer = styled(CardContainer)`
