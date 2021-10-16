@@ -11,18 +11,12 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 
-interface HeaderConstitutionProps {
+interface HeaderProps {
   role?: string;
   isLogged?: boolean;
 }
 
-/**export const Header: React.FC: = (props) => {
-  return <HeaderContainer>{props.children}</HeaderContainer>;
-};**/
-
-export const HeaderConstitution: React.FC<HeaderConstitutionProps> = (
-  props
-) => {
+export const Header: React.FC<HeaderProps> = (props) => {
   const [isLogged, setLogged] = useState<boolean>(false);
 
   return (

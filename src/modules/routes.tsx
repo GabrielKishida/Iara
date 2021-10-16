@@ -4,12 +4,15 @@ import { UserPage } from "./UserPage/UserPage";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
-export default function Routes() {
+const Routes: React.FC = (props) => {
   return (
     <BrowserRouter>
+      {props.children}
       <Route path="/" exact component={MainPage} />
       <Route path="/course" exact component={CoursePage} />
       <Route path="/user" exact component={UserPage} />
     </BrowserRouter>
   );
-}
+};
+
+export default Routes;
