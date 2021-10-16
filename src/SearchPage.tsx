@@ -4,17 +4,16 @@ import { HeaderConstitution } from "./components/header";
 import { Jumbotron } from "./components/jumbotron";
 import { Links } from "./components/links";
 import { Col, DivLine, Grid, Row } from "./components/theme/grid";
-import { WhiteBox } from "./components/white_box/white_box";
+import { WhiteBox, RoundedWhiteBox } from "./components/white_box/white_box";
 import { H3, H2, H4, H5, Body } from "./components/typography";
-import { CardContainer, MockCircle } from "./components/card/card.style";
+import { withFormik, Form, Field } from "formik";
 import React from "react";
 
-import MyFormWithFormik from "./components/MyFormWithFormik";
+import SearchForm from "./components/SearchForm";
 
 
 export const SearchPage: React.FC = () => {
   return (
-
     <Grid>
       <Row>
         <HeaderConstitution />
@@ -30,18 +29,17 @@ export const SearchPage: React.FC = () => {
               </Col>
             </Row>
             <VSeparator />
-            <Row>
-              <Col>
-                <MyFormWithFormik/>
-              </Col>
-            </Row>
+            <SearchForm/>
         </WhiteBox>
       </Row>
 
-      <Row>
-        <Col>
-          {MOCK_RESULTS.map((resultData) => (
-            <WhiteBox>
+      <VSeparator />
+
+      {MOCK_RESULTS.map((resultData) => (
+        <>
+          <Row>
+            <Col>
+            <RoundedWhiteBox>
               <Row>
                 <Col>
                   <H4> {resultData.name} </H4>
@@ -57,10 +55,12 @@ export const SearchPage: React.FC = () => {
                   <Body> {resultData.description} </Body>
                 </Col>
               </Row>
-            </WhiteBox>
-          ))}
-        </Col>
-      </Row>
+            </RoundedWhiteBox>
+            </Col>
+          </Row>
+          <VSeparator />
+        </>
+      ))}
     </Grid>
   );
 };
