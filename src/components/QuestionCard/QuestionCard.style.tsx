@@ -12,7 +12,7 @@ export const CardContainer = styled.div<CardContainerProps>`
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;
   flex-direction: row;
-  max-width: 50%;
+  width: 40%;
   flex: 0 0 auto;
   justify-content: center;
   padding: 150px, 150px;
@@ -20,7 +20,7 @@ export const CardContainer = styled.div<CardContainerProps>`
 
 export const ImageCardContainer = styled(CardContainer)`
     margin: 30px 0px;
-    max-width: 100%;
+    width: auto;
 `
 
 export const ImageRow = styled(Row)`

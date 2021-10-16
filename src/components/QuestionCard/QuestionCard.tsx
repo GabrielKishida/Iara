@@ -9,7 +9,7 @@ export const QuestionCard: React.FC = () => {
   const AlternativesRow2 = QuestionCardMock.alternatives.slice(3); 
 
   return (
-    <CardContainer inputColor={COLORS.xLightGray}>
+    <CardContainer inputColor="white">
       <div>
         <H4> {QuestionCardMock.title} </H4>
       </div>

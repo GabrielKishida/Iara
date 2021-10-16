@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { COLORS, SPACING } from "../theme";
-import { Col, Row } from "../theme/grid";
+import { SPACING } from "../theme";
+import { Row } from "../theme/grid";
 
 interface CardContainerProps {
     inputColor: string; 
@@ -12,15 +12,16 @@ export const CardContainer = styled.div<CardContainerProps>`
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;
   flex-direction: row;
-  max-width: 50%;
+  width: 40%;
   flex: 0 0 auto;
   justify-content: center;
   padding: 150px, 150px;
+  margin: 100px 0; 
 `;
 
 export const ImageCardContainer = styled(CardContainer)`
     margin: 30px 0px;
-    max-width: 100%;
+    width: auto;
 `
 
 export const ImageRow = styled(Row)`

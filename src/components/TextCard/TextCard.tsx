@@ -6,7 +6,7 @@ import { COLORS } from "../theme";
 
 export const TextCard: React.FC = () => {
   return (
-    <CardContainer inputColor={COLORS.xLightGray}>
+    <CardContainer inputColor="white">
       <div>
         <H4> {TextCardMock.title} </H4>
       </div>
