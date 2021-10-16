@@ -1,10 +1,10 @@
 import { H3, H4, H5, Body, BodyHeader } from "../typography";
-import { VSeparator, HSeparator } from "../theme";
 import React from "react";
 //import Jumbotron from 'react-bootstrap/Nav'
 import { JumbotronContainer } from "./jumbo.style";
 import { Row } from "../theme/grid";
-import { StyledButton } from "./jumbo.style";
+import { PrimaryButton } from "../button";
+import { VSeparator } from "..";
 
 /**export const Header: React.FC: = (props) => {
   return <HeaderContainer>{props.children}</HeaderContainer>;
@@ -20,10 +20,9 @@ export const Jumbotron: React.FC = (props) => {
           mais legal!
         </Body>
       </Row>
+      <VSeparator />
       <Row justifyContent={"flex-start"}>
-        <StyledButton>
-          <BodyHeader bold> Comece Agora!</BodyHeader>
-        </StyledButton>
+        <PrimaryButton>Comece agora!</PrimaryButton>
       </Row>
     </JumbotronContainer>
   );

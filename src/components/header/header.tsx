@@ -1,15 +1,13 @@
 import { H3, H4, H5 } from "../typography";
+import { HeaderLink, HeaderTitleLink } from "../button";
 import { VSeparator, HSeparator } from "../theme";
 import {
   HeaderContainer,
   LogoCircle,
   PerfilCircle,
   HeaderTextContainer,
-  HeaderLink,
-  HeaderTitleLink,
 } from "./header.style";
 import React from "react";
-import { Row } from "../theme/grid";
 import { useState } from "react";
 
 interface HeaderConstitutionProps {

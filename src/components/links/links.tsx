@@ -8,27 +8,27 @@ export const Links: React.FC = (props) => {
     <StyledNav fill>
       <StyledItem>
         <StyledLink>
-          <Body>Home</Body>
+          <Body white>Home</Body>
         </StyledLink>
       </StyledItem>
       <StyledItem>
         <StyledLink>
-          <Body>Cursos</Body>
+          <Body white>Cursos</Body>
         </StyledLink>
       </StyledItem>
       <StyledItem>
         <StyledLink>
-          <Body>Trilhas</Body>
+          <Body white>Trilhas</Body>
         </StyledLink>
       </StyledItem>
       <StyledItem>
         <StyledLink>
-          <Body>Atividades</Body>
+          <Body white>Atividades</Body>
         </StyledLink>
       </StyledItem>
       <StyledItem>
         <StyledLink>
-          <Body>Professores</Body>
+          <Body white>Professores</Body>
         </StyledLink>
       </StyledItem>
     </StyledNav>

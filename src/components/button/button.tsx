@@ -1,22 +1,33 @@
-import React from "react";
-import { LinkButtonStyled } from "./button.style";
+import styled from "styled-components";
+import { COLORS, SPACING } from "../theme";
+import Button from "react-bootstrap/Button";
 
-interface LinkButtonProps {
-  title: string;
-  onClick?: () => void;
-}
+export const HeaderLink = styled(Button).attrs(() => ({
+  variant: "outline-link",
+}))`
+  color: ${COLORS.areia};
+  font-weight: bold;
+  font-family: "Montserrat", regular;
+  font-size: 18px;
+`;
 
-export const LinkButton: React.FC<LinkButtonProps> = (props) => {
-  const [isClicked, setIsClicked] = React.useState(false);
+export const HeaderTitleLink = styled(Button).attrs(() => ({
+  variant: "outline-link",
+}))`
+  color: ${COLORS.areia};
+  font-family: "Roboto", sans serif;
+  font-weight: bold;
+  font-size: 30px;
+`;
 
-  const handleClick = () => {
-    setIsClicked(true);
-    props.onClick?.();
-  };
-
-  return (
-    <LinkButtonStyled onClick={handleClick} isClicked={isClicked}>
-      {props.title}
-    </LinkButtonStyled>
-  );
-};
+export const PrimaryButton = styled(Button).attrs(() => ({
+  variant: "outline-success",
+}))`
+  color: ${COLORS.areia};
+  font-weight: bold;
+  font-family: "Montserrat", regular;
+  font-size: 18px;
+  background-color: ${COLORS.verdeEscuro};
+  border-radius: ${SPACING.borderRadius}px;
+  padding: ${SPACING.medium}px;
+`;

@@ -1,4 +1,4 @@
-import { H1, ProfileCard } from "./components";
+import { H1, ProfileCard, VSeparator } from "./components";
 import { CursoDificuldade } from "./components/curso_dificuldade";
 import { HeaderConstitution } from "./components/header";
 import { Jumbotron } from "./components/jumbotron";
@@ -15,8 +15,6 @@ export const UserPage: React.FC = () => {
       <Row>
         <Links></Links>
       </Row>
-      <DivLine />
-
       <Row>
         <WhiteBox>
           <ProfileCard title="Olá, Joaquim" />
