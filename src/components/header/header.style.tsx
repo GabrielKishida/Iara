@@ -10,6 +10,8 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
+  box-shadow: 0px 0px 5px black;
+  z-index: 11;
 `;
 
 export const LogoCircle = styled.div`
