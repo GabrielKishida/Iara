@@ -7,6 +7,7 @@ import {
   PerfilCircle,
   HeaderTextContainer,
 } from "./header.style";
+import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 
@@ -29,20 +30,30 @@ export const HeaderConstitution: React.FC<HeaderConstitutionProps> = (
       <LogoCircle />
       <HSeparator />
       <HeaderTextContainer align="left">
-        <HeaderTitleLink>Iara</HeaderTitleLink>
+        <Link to="/">
+          <HeaderTitleLink>Iara</HeaderTitleLink>
+        </Link>
       </HeaderTextContainer>
       <HSeparator />
       <HSeparator />
 
       {props.isLogged ? (
         <HeaderTextContainer>
-          <HeaderLink bold>Perfil</HeaderLink>
-          <HeaderLink bold>Logout</HeaderLink>
+          <Link to="/user">
+            <HeaderLink bold>Perfil</HeaderLink>
+          </Link>
+          <Link to="/">
+            <HeaderLink bold>Logout</HeaderLink>
+          </Link>
         </HeaderTextContainer>
       ) : (
         <HeaderTextContainer>
-          <HeaderLink>Login</HeaderLink>
-          <HeaderLink bold>Cadastro</HeaderLink>
+          <Link to="/login">
+            <HeaderLink>Login</HeaderLink>
+          </Link>
+          <Link to="/signup">
+            <HeaderLink bold>Cadastro</HeaderLink>
+          </Link>
         </HeaderTextContainer>
       )}
 

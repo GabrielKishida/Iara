@@ -1,7 +1,7 @@
 import CoursePageMock from "./CoursePageMock";
-import { Grid } from "../../theme/grid";
+import { Grid } from "../../components/theme/grid";
 import { Course } from "./CoursePage.style";
-import { H3 } from "../../typography";
+import { H3 } from "../../components/typography";
 
 export const CoursePage: React.FC = () => {
   return (
@@ -10,14 +10,14 @@ export const CoursePage: React.FC = () => {
         {CoursePageMock.content.map((value) => {
           return (
             <>
-              <H3 style={{display:'flex', justifyContent:'flex-start'}}>
+              <H3 style={{ display: "flex", justifyContent: "flex-start" }}>
                 {value.title}
               </H3>
-              <div style={{width: '40%', marginBottom: '100px'}}>
+              <div style={{ width: "40%", marginBottom: "100px" }}>
                 {value.content}
               </div>
             </>
-          )
+          );
         })}
       </Course>
     </Grid>
