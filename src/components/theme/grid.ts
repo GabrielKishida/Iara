@@ -8,6 +8,7 @@ export const Grid = styled.div`
 interface RowProps {
   justifyContent?: string;
   alignItems?: string;
+  wrap?: boolean;
 }
 
 export const Row = styled.div`
@@ -17,6 +18,7 @@ export const Row = styled.div`
     props.justifyContent ?? "space-evenly"};
   ${(props: RowProps) =>
     props.alignItems ? "align-items: " + props.alignItems : ""}
+  ${(props: RowProps) => (props.wrap ? "flex-wrap: wrap" : "")}
 `;
 
 interface ColProps {

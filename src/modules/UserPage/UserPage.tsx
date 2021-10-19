@@ -46,7 +46,7 @@ export const UserPage: React.FC = () => {
         <VBox>
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Aulas em progresso</H3>
-            <Link to="/in-progress">
+            <Link to="/classes/in-progress">
               <LinkText>Ver mais</LinkText>
             </Link>
           </Row>
@@ -68,7 +68,7 @@ export const UserPage: React.FC = () => {
 
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Aulas finalizadas</H3>
-            <Link to="/finished-classes">
+            <Link to="/classes/finished">
               <LinkText>Ver mais</LinkText>
             </Link>
           </Row>
