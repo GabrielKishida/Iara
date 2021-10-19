@@ -1,26 +1,19 @@
-import { H1, ProfileCard, VSeparator, HSeparator } from "./components";
-import { CursoDificuldade } from "./components/curso_dificuldade";
-import { HeaderConstitution } from "./components/header";
-import { Jumbotron } from "./components/jumbotron";
-import { Links } from "./components/links";
-import { Col, DivLine, Grid, Row } from "./components/theme/grid";
-import { WhiteBox, RoundedWhiteBox } from "./components/white_box/white_box";
-import { H3, H2, H4, H5, Body } from "./components/typography";
+import { H1, ProfileCard, VSeparator, HSeparator } from "../../components";
+import { CursoDificuldade } from "../../components/curso_dificuldade";
+import { Jumbotron } from "../../components/jumbotron";
+import { Links } from "../../components/links";
+import { Col, DivLine, Grid, Row } from "../../components/theme/grid";
+import { WhiteBox, RoundedWhiteBox } from "../../components/white_box/white_box";
+import { H3, H2, H4, H5, Body } from "../../components/typography";
 import { withFormik, Form, Field } from "formik";
 import React from "react";
 
-import SearchForm from "./components/SearchForm";
+import SearchForm from "./SearchForm";
 
 
 export const SearchPage: React.FC = () => {
   return (
     <Grid>
-      <Row>
-        <HeaderConstitution />
-      </Row>
-      <Row>
-        <Links></Links>
-      </Row>
       <Row>
         <WhiteBox>
             <Row>
@@ -43,11 +36,8 @@ export const SearchPage: React.FC = () => {
               <Row>
                 <Col>
                   <H4> {resultData.name} </H4>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
                   <Body> Duração: {resultData.duration} - Dificuldade: {resultData.difficulty} </Body>
+                  <VSeparator />
                 </Col>
               </Row>
               <Row>

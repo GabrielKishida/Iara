@@ -1,15 +1,10 @@
 import { withFormik, Form, Field } from "formik";
-import { H1, ProfileCard, VSeparator, HSeparator } from "./";
-import { CursoDificuldade } from "./curso_dificuldade";
-import { HeaderConstitution } from "./header";
-import { Jumbotron } from "./jumbotron";
-import { Links } from "./links";
-import { Col, DivLine, Grid, Row } from "./theme/grid";
-import { WhiteBox, RoundedWhiteBox } from "./white_box/white_box";
-import { H3, H2, H4, H5, Body } from "./typography";
+import { H1, ProfileCard, VSeparator, HSeparator } from "../../components";
+import { Col, DivLine, Grid, Row } from "../../components/theme/grid";
+import { H3, H2, H4, H5, Body } from "../../components/typography";
 import React from "react";
-import { CardContainer } from "./card/card.style";
-import { COLORS } from "./theme";
+import { CardContainer } from "../../components/card/card.style";
+import { COLORS } from "../../components/theme";
 
 const SearchForm = withFormik({
   mapPropsToValues: () => ({
@@ -40,7 +35,7 @@ const SearchFormStructure = () => (
               <H5> Filtros </H5>
               </Col>
             </Row>
-            <VSeparator />
+            <VSeparator half/>
             <Row>
               <Col size={1}>
                 <H5> Duração </H5>
@@ -61,6 +56,17 @@ const SearchFormStructure = () => (
                         <Body white>
                           <Field type="checkbox" name="duration" value="longo" />
                         </Body>
+                      </Row>
+                    </Col>
+                    <Col>
+                      <Row>
+                        <HSeparator half/>
+                      </Row>
+                      <Row>
+                        <HSeparator half/>
+                      </Row>
+                      <Row>
+                        <HSeparator half/>
                       </Row>
                     </Col>
                     <Col>
@@ -103,6 +109,17 @@ const SearchFormStructure = () => (
                         <Body white>
                           <Field type="checkbox" name="difficulty" value="dificil" />
                         </Body>
+                      </Row>
+                    </Col>
+                    <Col>
+                      <Row>
+                        <HSeparator half/>
+                      </Row>
+                      <Row>
+                        <HSeparator half/>
+                      </Row>
+                      <Row>
+                        <HSeparator half/>
                       </Row>
                     </Col>
                     <Col>
