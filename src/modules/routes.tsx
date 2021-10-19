@@ -5,6 +5,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { SearchPage } from "./SearchPage/SearchPage";
 import { FinishedClassesPage } from "./ClassesPage/FinishedClassesPage";
 import { InProgressClassesPage } from "./ClassesPage/InProgressClassesPage";
+import { LoginPage } from "./AuthPage/LoginPage";
+import { SignupPage } from "./AuthPage/SignupPage";
 
 const Routes: React.FC = (props) => {
   return (
@@ -20,6 +22,8 @@ const Routes: React.FC = (props) => {
         exact
         component={InProgressClassesPage}
       />
+      <Route path="/login" exact component={LoginPage} />
+      <Route path="/signup" exact component={SignupPage} />
     </BrowserRouter>
   );
 };
