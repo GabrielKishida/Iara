@@ -20,6 +20,10 @@ export const VSeparator = styled.div`
     props.half ? SPACING.small : SPACING.large}px;
 `;
 
+export const BigHSeparator = styled.div`
+  width: ${SPACING.xHuge}px;
+`;
+
 export const HSeparator = styled.div`
   width: ${(props: SeparatorProps) =>
     props.half ? SPACING.small : SPACING.large}px;
