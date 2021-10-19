@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, SPACING } from "../theme";
+import { COLORS } from "../theme";
 import Nav from "react-bootstrap/Nav";
 
 export const StyledNav = styled(Nav)`

@@ -31,3 +31,19 @@ export const PrimaryButton = styled(Button).attrs(() => ({
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;
 `;
+
+interface LinkButtonProps {
+  delete?: boolean;
+}
+
+export const LinkButton = styled(Button).attrs(() => ({
+  variant: "link",
+}))`
+  color: ${(props: LinkButtonProps) =>
+    props.delete ? COLORS.red : COLORS.verdeEscuro};
+  font-weight: bold;
+  font-family: "Montserrat", regular;
+  font-size: 18px;
+  padding: ${SPACING.medium}px;
+  max-width: 200px;
+`;
