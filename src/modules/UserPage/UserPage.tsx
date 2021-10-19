@@ -1,8 +1,17 @@
-import { H1, H2, ProfileCard, VSeparator, HSeparator } from "../../components";
+import {
+  H1,
+  H3,
+  LinkText,
+  ProfileCard,
+  VSeparator,
+  HSeparator,
+} from "../../components";
 import { LinkButton } from "../../components/button";
 import { ClassCard } from "../../components/card/class_card";
 import { Col, Grid, Row, VBox } from "../../components/theme/grid";
 import { WhiteBox } from "../../components/white_box/white_box";
+
+import { Link } from "react-router-dom";
 
 export const UserPage: React.FC = () => {
   return (
@@ -35,7 +44,13 @@ export const UserPage: React.FC = () => {
       <VSeparator />
       <Row>
         <VBox>
-          <H2>Aulas em progresso</H2>
+          <Row justifyContent="space-between" alignItems="flex-end">
+            <H3>Aulas em progresso</H3>
+            <Link to="/in-progress">
+              <LinkText>Ver mais</LinkText>
+            </Link>
+          </Row>
+
           <Row justifyContent="flex-start">
             {MOCK_CLASSES.map((classData) => (
               <>
@@ -51,7 +66,12 @@ export const UserPage: React.FC = () => {
           </Row>
           <VSeparator />
 
-          <H2>Aulas finalizadas</H2>
+          <Row justifyContent="space-between" alignItems="flex-end">
+            <H3>Aulas finalizadas</H3>
+            <Link to="/finished-classes">
+              <LinkText>Ver mais</LinkText>
+            </Link>
+          </Row>
           <Row justifyContent="flex-start">
             {MOCK_CLASSES.map((classData) => (
               <>
