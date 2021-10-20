@@ -7,6 +7,8 @@ export const Grid = styled.div`
 
 interface RowProps {
   justifyContent?: string;
+  alignItems?: string;
+  wrap?: boolean;
 }
 
 export const Row = styled.div`
@@ -14,6 +16,9 @@ export const Row = styled.div`
   flex-direction: row;
   justify-content: ${(props: RowProps) =>
     props.justifyContent ?? "space-evenly"};
+  ${(props: RowProps) =>
+    props.alignItems ? "align-items: " + props.alignItems : ""}
+  ${(props: RowProps) => (props.wrap ? "flex-wrap: wrap" : "")}
 `;
 
 interface ColProps {
@@ -28,6 +33,17 @@ export const DivLine = styled.div`
 `;
 
 export const Col = styled.div`
-  ${(props: ColProps) => props.size ?? `flex: ${props.size}`}
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  ${(props: ColProps) => props.size ?? `flex: ${props.size};`}
+`;
+
+export const VBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: ${SPACING.medium}px;
+  justify-content: flex-start;
+  align-self: center;
+  flex-wrap: wrap;
 `;

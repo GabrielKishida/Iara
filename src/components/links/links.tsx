@@ -42,6 +42,13 @@ export const Links: React.FC = (props) => {
           </Link>
         </StyledLink>
       </StyledItem>
+      <StyledItem>
+        <StyledLink>
+          <Link to="/search">
+            <Body white>Pesquisa</Body>
+          </Link>
+        </StyledLink>
+      </StyledItem>
     </StyledNav>
   );
 };
