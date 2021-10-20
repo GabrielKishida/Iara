@@ -1,5 +1,5 @@
 import { AnswerButton, CardContainer, AnswerRow, ImageCardContainer, ImageRow } from "./QuestionCard.style";
-import { Col, Row } from "../theme/grid";
+import { Col } from "../theme/grid";
 import { H4 } from "../typography";
 import QuestionCardMock from "./QuestionCardMock";
 import { COLORS } from "../theme";
