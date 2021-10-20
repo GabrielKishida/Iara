@@ -21,7 +21,7 @@ export const QuestionCard: React.FC = () => {
         </Col>
       </ImageRow>
       <AnswerRow>
-        {AlternativesRow1.map((value, index) =>{
+        {AlternativesRow1.map((value) =>{
           return (
             <AnswerButton>
               <H4> 

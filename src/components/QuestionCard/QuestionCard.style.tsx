@@ -9,13 +9,12 @@ interface CardContainerProps {
 
 export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
+  width: 100%;
   class: "flex-container";
   background-color: ${({inputColor}) => inputColor};
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;
   flex-direction: column;
-  flex: 0 0 auto;
-  justify-content: center;
 `;
 
 export const ImageCardContainer = styled(CardContainer)`

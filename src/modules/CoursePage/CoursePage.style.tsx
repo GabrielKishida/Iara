@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Grid } from "../../components/theme/grid";
 
 export const Course = styled.div`
     display:flex;
@@ -12,4 +13,9 @@ export const Chapter = styled.div`
 
 export const ChapterCheckbox = styled.input`
     font-color: red;
+`
+
+export const CourseGrid = styled(Grid)`
+    display: flex;
+    justify-content: center;
 `
