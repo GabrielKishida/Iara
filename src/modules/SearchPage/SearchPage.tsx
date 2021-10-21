@@ -221,7 +221,7 @@ export const SearchPage: React.FC = () => {
 
       {results.map((resultData) => (
         <React.Fragment key={`result-course-${resultData.id}`}>
-          <Row>
+          <Row id={`result-course-${resultData.id}`}>
             <Col>
               <RoundedWhiteBox>
                 <Row>
@@ -241,8 +241,9 @@ export const SearchPage: React.FC = () => {
           </Row>
           <VSeparator />
         </React.Fragment>
-      ))}
-    </Grid>
+      ))
+      }
+    </Grid >
   );
 }
 
