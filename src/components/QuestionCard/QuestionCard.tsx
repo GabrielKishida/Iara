@@ -1,5 +1,5 @@
 import { AnswerButton, CardContainer, AnswerRow, ImageCardContainer, ImageRow } from "./QuestionCard.style";
-import { Col, Row } from "../theme/grid";
+import { Col } from "../theme/grid";
 import { H4 } from "../typography";
 import QuestionCardMock from "./QuestionCardMock";
 import { COLORS } from "../theme";
@@ -21,7 +21,7 @@ export const QuestionCard: React.FC = () => {
         </Col>
       </ImageRow>
       <AnswerRow>
-        {AlternativesRow1.map((value, index) =>{
+        {AlternativesRow1.map((value) =>{
           return (
             <AnswerButton>
               <H4> 
