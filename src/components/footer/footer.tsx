@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 import { Col } from "../theme/grid";
+import * as url_twitter from "../assets/images/twitter.png";
+import * as url_facebook from "../assets/images/facebook-logo.png";
+import * as url_linkedin from "../assets/images/linkedin.png";
 
 
 
@@ -27,9 +30,10 @@ export const Footer: React.FC = (props) => {
       <FooterTextContainer>
           <BodyHeader>Dúvidas</BodyHeader>
           <BodyHeader>Contatos</BodyHeader>
-          <SocialMediaButton></SocialMediaButton>
-          <SocialMediaButton></SocialMediaButton>
-          <SocialMediaButton></SocialMediaButton>
+          <SocialMediaButton url={url_twitter.default}>
+          </SocialMediaButton>
+          <SocialMediaButton url={url_facebook.default}></SocialMediaButton>
+          <SocialMediaButton url={url_linkedin.default}></SocialMediaButton>
           <BodyHeader>FAQ</BodyHeader>
           <BodyHeader>Cookies</BodyHeader>
       </FooterTextContainer>

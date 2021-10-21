@@ -41,7 +41,7 @@ export const SignupPage: React.FC = () => {
                 <Form.Control type="password" placeholder="Insira sua senha" />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="password">
+              <Form.Group className="mb-3" controlId="passwordRepeat">
                 <Form.Label>Insira sua senha novamente</Form.Label>
                 <Form.Control
                   type="password"
