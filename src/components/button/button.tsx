@@ -47,3 +47,18 @@ export const LinkButton = styled(Button).attrs(() => ({
   padding: ${SPACING.medium}px;
   max-width: 200px;
 `;
+
+export const SocialMediaButton = styled(Button).attrs(() => ({
+  variant:"shadow-none"
+}))`
+  background-color: ${COLORS.areia};
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  outline: none !important;
+  margin: 5px;
+  line-height: 20px;
+  padding: 0;
+  background-image: url("../assets/images/twitter.png");
+  background-size: cover;
+`;

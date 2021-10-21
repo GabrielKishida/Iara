@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
       <LogoCircle />
       <HSeparator />
       <HeaderTextContainer align="left">
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <HeaderTitleLink>Iara</HeaderTitleLink>
         </Link>
       </HeaderTextContainer>
@@ -33,19 +33,19 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
       {props.isLogged ? (
         <HeaderTextContainer>
-          <Link to="/user">
+          <Link to="/user" style={{ textDecoration: 'none' }}>
             <HeaderLink bold>Perfil</HeaderLink>
           </Link>
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <HeaderLink bold>Logout</HeaderLink>
           </Link>
         </HeaderTextContainer>
       ) : (
         <HeaderTextContainer>
-          <Link to="/login">
+          <Link to="/login" style={{ textDecoration: 'none' }}>
             <HeaderLink>Login</HeaderLink>
           </Link>
-          <Link to="/signup">
+          <Link to="/signup" style={{ textDecoration: 'none' }}>
             <HeaderLink bold>Cadastro</HeaderLink>
           </Link>
         </HeaderTextContainer>

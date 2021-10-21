@@ -69,6 +69,16 @@ export const BodyHeader = styled.text`
   vertical-align: middle;
 `;
 
+export const FooterTitle = styled.text`
+  color: ${COLORS.areia};
+  font-weight: ${(props: TypographyProps) => (props.bold ? "bold" : "normal")};
+  font-family: "Montserrat", regular;
+  font-size: 30px;
+  margin: 5px;
+  margin-top: auto;
+  vertical-align: middle;
+`;
+
 export const BodySecondary = styled.text`
   color: ${(props: TypographyProps) =>
     props.white ? COLORS.xLightGray : COLORS.xDarkGray};
