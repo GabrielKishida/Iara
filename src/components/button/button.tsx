@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { COLORS, SPACING } from "../theme";
 import Button from "react-bootstrap/Button";
+import * as url_twitter from "../assets/images/twitter.png";
 
 export const HeaderLink = styled(Button).attrs(() => ({
   variant: "outline-link",
@@ -48,6 +49,11 @@ export const LinkButton = styled(Button).attrs(() => ({
   max-width: 200px;
 `;
 
+interface SocialMediaButtonProps {
+  url: string;
+}
+
+
 export const SocialMediaButton = styled(Button).attrs(() => ({
   variant:"shadow-none"
 }))`
@@ -59,6 +65,8 @@ export const SocialMediaButton = styled(Button).attrs(() => ({
   margin: 5px;
   line-height: 20px;
   padding: 0;
-  background-image: url("../assets/images/twitter.png");
+  background-image: url(${(props: SocialMediaButtonProps) =>
+    props.url});
   background-size: cover;
+  background-repeat: no-repeat;
 `;

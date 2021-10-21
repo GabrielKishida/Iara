@@ -20,17 +20,18 @@ export const CursosContainer = styled.div.attrs(() => ({
     margin: 10px;
     width: 90;
     display: flex;
-    align-items: flex-start;
+    justify-content: flex-start;
     flex-direction: row;
   `;
 
-  export const StyledCardGroup = styled(CardGroup).attrs(() => ({
-    className: 'card-group w-75 container'
+
+
+  export const StyledCardBody = styled(Card.Body).attrs(() => ({
+    className: ''
   }))`
-    padding: 10px;
-    text-align: center;
-    max-width: 56%;
-    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    margin-right: auto;
 
   `;
 
@@ -41,6 +42,8 @@ export const CursosContainer = styled.div.attrs(() => ({
   }))`
     border-left: 6px solid green;
     height: 80px;
+    margin: 0;
+    width: 0;
   `;
 
 
