@@ -1,20 +1,26 @@
 import { H4, Body } from "../typography";
 import { VSeparator, HSeparator, COLORS } from "../theme";
-import { CardContainer, MockSmallCircle } from "./card.style";
+import { CardContainer, MockCircle, MockSmallCircle } from "./card.style";
 import React from "react";
 import { Col, Row } from "../theme/grid";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 interface ClassCardProps {
   name: string;
-  classType: "inProgress" | "finished";
+  classType: "inProgress" | "finished" | "teacher";
   description?: string;
   progress?: number;
 }
 
 export const ClassCard: React.FC<ClassCardProps> = (props) => {
   const cardColor =
-    props.classType === "inProgress" ? COLORS.verdeEscuro : COLORS.darkGray;
+    props.classType === "inProgress"
+      ? COLORS.verdeEscuro
+      : props.classType === "finished"
+      ? COLORS.darkGray
+      : props.classType === "teacher"
+      ? COLORS.marrom
+      : COLORS.xDarkGray;
   return (
     <CardContainer color={cardColor}>
       <Row>
@@ -38,6 +44,27 @@ export const ClassCard: React.FC<ClassCardProps> = (props) => {
               <VSeparator half />
             </div>
           )}
+        </Col>
+      </Row>
+    </CardContainer>
+  );
+};
+
+export const CreateClassCard: React.FC = (props) => {
+  return (
+    <CardContainer color={COLORS.azulRio}>
+      <Row>
+        <Col>
+          <MockCircle />
+        </Col>
+        <HSeparator />
+        <Col>
+          <H4 white>{"Criar Aula"}</H4>
+          <VSeparator half />
+          <div>
+            <Body white>{"Crie conteúdo para seus alunos"}</Body>
+            <VSeparator half />
+          </div>
         </Col>
       </Row>
     </CardContainer>

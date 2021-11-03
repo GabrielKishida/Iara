@@ -1,3 +1,4 @@
+import React from "react";
 import {
   H1,
   H3,
@@ -7,13 +8,14 @@ import {
   HSeparator,
 } from "../../components";
 import { LinkButton } from "../../components/button";
-import { ClassCard } from "../../components/card/class_card";
+import { ClassCard, CreateClassCard } from "../../components/card/class_card";
 import { Col, Grid, Row, VBox } from "../../components/theme/grid";
 import { WhiteBox } from "../../components/white_box/white_box";
 
 import { Link } from "react-router-dom";
 
 export const UserPage: React.FC = () => {
+  const [userRole, setUserRole] = React.useState("Aluno");
   return (
     <Grid>
       <Row>
@@ -35,7 +37,11 @@ export const UserPage: React.FC = () => {
               <VSeparator half />
               <LinkButton delete>Apagar Perfil</LinkButton>
               <VSeparator half />
-              <LinkButton>Quero ser um professor</LinkButton>
+              <LinkButton>
+                {userRole == "Professor"
+                  ? "Deixar de ser professor"
+                  : "Quero ser um professor"}
+              </LinkButton>
               <VSeparator half />
             </Col>
           </Row>
@@ -44,6 +50,29 @@ export const UserPage: React.FC = () => {
       <VSeparator />
       <Row>
         <VBox>
+          <Row justifyContent="space-between" alignItems="flex-end">
+            <H3>Suas aulas</H3>
+            <Link to="/classes/my-classes">
+              <LinkText>Ver mais</LinkText>
+            </Link>
+          </Row>
+
+          <Row justifyContent="flex-start">
+            <CreateClassCard />
+            <HSeparator />
+            {MOCK_CLASSES.slice(0, 2).map((classData) => (
+              <>
+                <ClassCard
+                  classType="teacher"
+                  name={classData.name}
+                  description={classData.description}
+                />
+                <HSeparator />
+              </>
+            ))}
+          </Row>
+          <VSeparator />
+
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Aulas em progresso</H3>
             <Link to="/classes/in-progress">
