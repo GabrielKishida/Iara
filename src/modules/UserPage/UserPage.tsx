@@ -15,10 +15,10 @@ import { WhiteBox } from "../../components/white_box/white_box";
 import { Link, RouterProps } from "react-router-dom";
 
 export const UserPage: React.FC<RouterProps> = (props) => {
-  const [userRole, setUserRole] = React.useState("Aluno");
+  const [userRole, setUserRole] = React.useState("Professor");
 
-  const handleClickClass = () => {
-    props.history.push("/class");
+  const handleClickClass = (id: string) => {
+    props.history.push("/class/" + id);
   };
 
   return (
@@ -32,7 +32,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
             <Col size={1}>
               <ProfileCard
                 title="Joaquim"
-                role="Aluno"
+                role={userRole}
                 subtitle="18 cursos completos"
                 description="Descrição de perfil e muitas outras coisas relevantes tipo o alfabeto inteiro a b c d e f ..."
               />
@@ -107,7 +107,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
-                  onClick={handleClickClass}
+                  onClick={() => handleClickClass(classData.id)}
                 />
                 <HSeparator />
               </>
@@ -129,7 +129,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
-                  onClick={handleClickClass}
+                  onClick={() => handleClickClass(classData.id)}
                 />
                 <HSeparator />
               </>
@@ -143,18 +143,21 @@ export const UserPage: React.FC<RouterProps> = (props) => {
 
 const MOCK_CLASSES = [
   {
+    id: "1",
     name: "Aula I",
     progress: 34,
     description:
       "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
   },
   {
+    id: "2",
     name: "Aula II",
     progress: 74,
     description:
       "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
   },
   {
+    id: "3",
     name: "Aula III",
     progress: 99,
     description:
