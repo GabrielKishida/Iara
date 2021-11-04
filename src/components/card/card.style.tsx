@@ -7,6 +7,7 @@ interface CardContainerProps {
 }
 
 export const CardContainer = styled.div`
+  display: flex;
   background-color: ${(props: CardContainerProps) =>
     props.color ?? COLORS.verdeEscuro};
   border-radius: ${SPACING.borderRadius}px;
