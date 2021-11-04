@@ -6,60 +6,52 @@
 // https://on.cypress.io/writing-first-test
 
 describe("Testes dos componentes da pagina principal", () => {
+  it("Testa botão Comece Agora", () => {
+    cy.visit("http://localhost:3000/");
 
+    cy.contains("Comece agora").click();
+    cy.url().should("include", "/signup");
+  });
 
-    it("Testa botão Comece Agora", () => {
-        cy.visit("http://localhost:3000/");
+  it("Testa botão Fácil", () => {
+    cy.visit("http://localhost:3000/");
 
-        cy.contains("Comece agora").click();
-        cy.url().should("include", "/signup");
+    cy.contains("Fácil").click();
+    cy.url().should("include", "/course");
+  });
 
-    });
+  it("Testa botão Médio", () => {
+    cy.visit("http://localhost:3000/");
 
-    it("Testa botão Fácil", () => {
-        cy.visit("http://localhost:3000/");
+    cy.contains("Médio").click();
+    cy.url().should("include", "/course");
+  });
 
-        cy.contains("Fácil").click();
-        cy.url().should("include", "/course");
+  it("Testa botão Difícil", () => {
+    cy.visit("http://localhost:3000/");
 
+    cy.contains("Difícil").click();
+    cy.url().should("include", "/course");
+  });
 
-    });
+  it("Testa botão Curso de Ritmo", () => {
+    cy.visit("http://localhost:3000/");
 
-    it("Testa botão Médio", () => {
-        cy.visit("http://localhost:3000/");
+    cy.contains("Curso de Ritmo").click();
+    cy.url().should("include", "/course");
+  });
 
-        cy.contains("Médio").click();
-        cy.url().should("include", "/course");
+  it("Testa botão Curso de Harmonia", () => {
+    cy.visit("http://localhost:3000/");
 
+    cy.contains("Curso de Harmonia").click();
+    cy.url().should("include", "/course");
+  });
 
-    });
+  it("Testa botão Curso de Partitura", () => {
+    cy.visit("http://localhost:3000/");
 
-    it("Testa botão Difícil", () => {
-        cy.visit("http://localhost:3000/");
-
-        cy.contains("Difícil").click();
-        cy.url().should("include", "/course");
-    });
-
-    it("Testa botão Curso 1", () => {
-        cy.visit("http://localhost:3000/");
-
-        cy.contains("Curso 1").click();
-        cy.url().should("include", "/course");
-    });
-
-    it("Testa botão Curso 2", () => {
-        cy.visit("http://localhost:3000/");
-
-        cy.contains("Curso 2").click();
-        cy.url().should("include", "/course");
-    });
-
-    it("Testa botão Curso 3", () => {
-        cy.visit("http://localhost:3000/");
-
-        cy.contains("Curso 3").click();
-        cy.url().should("include", "/course");
-    });
-
+    cy.contains("Curso de Partitura").click();
+    cy.url().should("include", "/course");
+  });
 });
