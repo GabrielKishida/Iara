@@ -13,6 +13,7 @@ export const SPACING = {
 
 interface SeparatorProps {
   half?: boolean;
+  huge?: boolean;
 }
 
 export const VSeparator = styled.div`
@@ -26,5 +27,5 @@ export const BigHSeparator = styled.div`
 
 export const HSeparator = styled.div`
   width: ${(props: SeparatorProps) =>
-    props.half ? SPACING.small : SPACING.large}px;
+    props.half ? SPACING.small : props.huge ? SPACING.xHuge : SPACING.large}px;
 `;

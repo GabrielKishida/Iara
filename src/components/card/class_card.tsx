@@ -55,7 +55,7 @@ export const CreateClassCard: React.FC = (props) => {
     <CardContainer color={COLORS.azulRio}>
       <Row>
         <Col>
-          <MockCircle />
+          <MockSmallCircle />
         </Col>
         <HSeparator />
         <Col>
