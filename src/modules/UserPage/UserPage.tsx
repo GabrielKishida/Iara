@@ -15,7 +15,7 @@ import { WhiteBox } from "../../components/white_box/white_box";
 import { Link, RouterProps } from "react-router-dom";
 
 export const UserPage: React.FC<RouterProps> = (props) => {
-  const [userRole, setUserRole] = React.useState("Aluno");
+  const [userRole, setUserRole] = React.useState("Professor");
 
   const handleClickClass = (id: string) => {
     props.history.push("/class/" + id);
@@ -32,7 +32,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
             <Col size={1}>
               <ProfileCard
                 title="Joaquim"
-                role="Aluno"
+                role={userRole}
                 subtitle="18 cursos completos"
                 description="Descrição de perfil e muitas outras coisas relevantes tipo o alfabeto inteiro a b c d e f ..."
               />
