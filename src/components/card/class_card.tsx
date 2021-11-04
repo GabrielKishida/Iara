@@ -10,9 +10,12 @@ interface ClassCardProps {
   classType: "inProgress" | "finished" | "teacher";
   description?: string;
   progress?: number;
+  onClick?: () => void;
 }
 
 export const ClassCard: React.FC<ClassCardProps> = (props) => {
+  const [cardOpacity, setCardOpacity] = React.useState(1.0);
+
   const cardColor =
     props.classType === "inProgress"
       ? COLORS.verdeEscuro
@@ -21,8 +24,15 @@ export const ClassCard: React.FC<ClassCardProps> = (props) => {
       : props.classType === "teacher"
       ? COLORS.marrom
       : COLORS.xDarkGray;
+
   return (
-    <CardContainer color={cardColor}>
+    <CardContainer
+      color={cardColor}
+      opacity={cardOpacity}
+      onClick={props.onClick}
+      onPointerEnter={() => setCardOpacity(0.8)}
+      onPointerLeave={() => setCardOpacity(1.0)}
+    >
       <Row>
         <Col>
           <MockSmallCircle />

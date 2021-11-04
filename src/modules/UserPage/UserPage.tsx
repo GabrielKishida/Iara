@@ -12,10 +12,15 @@ import { ClassCard, CreateClassCard } from "../../components/card/class_card";
 import { Col, Grid, Row, VBox } from "../../components/theme/grid";
 import { WhiteBox } from "../../components/white_box/white_box";
 
-import { Link } from "react-router-dom";
+import { Link, RouterProps } from "react-router-dom";
 
-export const UserPage: React.FC = () => {
+export const UserPage: React.FC<RouterProps> = (props) => {
   const [userRole, setUserRole] = React.useState("Aluno");
+
+  const handleClickClass = () => {
+    props.history.push("/class");
+  };
+
   return (
     <Grid>
       <Row>
@@ -102,6 +107,7 @@ export const UserPage: React.FC = () => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
+                  onClick={handleClickClass}
                 />
                 <HSeparator />
               </>
@@ -123,6 +129,7 @@ export const UserPage: React.FC = () => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
+                  onClick={handleClickClass}
                 />
                 <HSeparator />
               </>
