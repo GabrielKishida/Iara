@@ -1,64 +1,119 @@
-import { CourseGrid, Card, SubmitButton, PageTitle } from "./CreateCoursePage.style";
-import { H3, H4, Body } from "../../components/typography";
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import React, { FormEventHandler } from "react";
+import {
+  CourseGrid,
+  Card,
+  SubmitButton,
+  PageTitle,
+} from "./CreateCoursePage.style";
+import { H3, H4 } from "../../components/typography";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { VSeparator } from "../../components";
 
 export const CreateCoursePage: React.FC = () => {
+  const [textSegments, setTextSegments] = React.useState<TextBlock[]>([]);
+  const [questionSegments, setQuestionSegments] = React.useState<
+    QuestionBlock[]
+  >([]);
 
-    const alternatives = [];
+  const alternatives = [];
 
-    for (var i = 0; i < 6; i++){
-        alternatives.push(                
-            <Form.Group as={Col}>
-                <Form.Label>Alternativa {i+1}</Form.Label>
-                <Form.Control />
-            </Form.Group>)
-    }
+  for (var i = 0; i < 6; i++) {
+    alternatives.push(
+      <Form.Group as={Col} controlId={"option" + (i + 1).toString()}>
+        <Form.Label>Alternativa {i + 1}</Form.Label>
+        <Form.Control />
+      </Form.Group>
+    );
+  }
+
+  interface TextBlock {
+    title: string;
+    text: string;
+    index: number;
+  }
+
+  interface QuestionBlock {
+    title: string;
+    img: string;
+    options: string[];
+    index: number;
+  }
+
+  const handleSubmitText = (e: any) => {
+    e.preventDefault();
+    const textData: TextBlock = {
+      title: e.target.elements.title.value,
+      text: e.target.elements.classtext.value,
+      index: textSegments.length + questionSegments.length,
+    };
+    setTextSegments(textSegments.concat(textData));
+  };
+
+  const handleSubmitQuestion = (e: any) => {
+    e.preventDefault();
+    const questionData: QuestionBlock = {
+      title: e.target.elements.title.value,
+      img: e.target.elements.img.value,
+      options: [
+        e.target.elements.option1.value,
+        e.target.elements.option2.value,
+        e.target.elements.option3.value,
+        e.target.elements.option4.value,
+        e.target.elements.option5.value,
+        e.target.elements.option6.value,
+      ],
+      index: textSegments.length + questionSegments.length,
+    };
+    setQuestionSegments(questionSegments.concat(questionData));
+  };
 
   return (
     <CourseGrid>
-        <PageTitle>
-            <H3>
-                CRIE UMA AULA
-            </H3>
-        </PageTitle>
-        <Card>
-            <H4>
-                Crie um Card de texto
-            </H4>
-            <Form>
-            <Form.Group className="mb-3">
-                <Form.Label>Título</Form.Label>
-                <Form.Control type="email" placeholder="Título da aula" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Texto da aula</Form.Label>
-                <Form.Control as="textarea" rows={5} />
-            </Form.Group>
-            </Form>
-        </Card>
+      <PageTitle>
+        <H3>Crie uma aula</H3>
+      </PageTitle>
+      <Card>
+        <H4>Crie um Card de texto</H4>
+        <Form onSubmit={handleSubmitText}>
+          <Form.Group className="mb-3" controlId="title">
+            <Form.Label>Título</Form.Label>
+            <Form.Control type="text" placeholder="Título da aula" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="classtext">
+            <Form.Label>Texto da aula</Form.Label>
+            <Form.Control as="textarea" rows={5} />
+          </Form.Group>
+          <VSeparator half />
 
-        <Card>
-            <H4>
-                Crie um Card de Questão
-            </H4>
-            <Form.Group className="mb-3">
-                <Form.Label>Título</Form.Label>
-                <Form.Control type="email" placeholder="Título da questão" />
-            </Form.Group>
-            <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Insira uma imagem</Form.Label>
-                <Form.Control type="file" />
-            </Form.Group>
-            <Row className="mb-6">
-                {alternatives}
-            </Row>
-        </Card>
+          <SubmitButton variant="primary" type="submit">
+            Adicionar texto
+          </SubmitButton>
+        </Form>
+      </Card>
 
-        <SubmitButton variant="primary" type="submit">
-            Criar aula
-        </SubmitButton>
+      <Card>
+        <H4>Crie um Card de Questão</H4>
+        <Form>
+          <Form.Group className="mb-3" controlId="title">
+            <Form.Label>Título</Form.Label>
+            <Form.Control type="text" placeholder="Título da questão" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="img">
+            <Form.Label>Insira uma imagem</Form.Label>
+            <Form.Control type="file" />
+          </Form.Group>
+          <Row className="mb-6">{alternatives}</Row>
+          <VSeparator half />
+
+          <SubmitButton variant="primary" type="submit">
+            Adicionar Questão
+          </SubmitButton>
+        </Form>
+      </Card>
+
+      <VSeparator />
     </CourseGrid>
   );
 };
