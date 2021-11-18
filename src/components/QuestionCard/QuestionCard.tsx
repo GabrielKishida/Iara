@@ -11,7 +11,7 @@ import { COLORS } from "../theme";
 
 export interface QuestionCardProps {
   title: string;
-  image: string;
+  image?: string;
   alternatives: string[];
 }
 

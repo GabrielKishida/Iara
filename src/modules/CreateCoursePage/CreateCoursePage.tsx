@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 import { VSeparator } from "../../components";
 import { VBox } from "../../components/theme/grid";
 import { TextCard } from "../../components/TextCard/TextCard";
+import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
 
 export const CreateCoursePage: React.FC = () => {
   const [textSegments, setTextSegments] = React.useState<TextBlock[]>([]);
@@ -39,7 +40,7 @@ export const CreateCoursePage: React.FC = () => {
 
   interface QuestionBlock {
     title: string;
-    options: string[];
+    alternatives: string[];
     index: number;
     image?: string;
   }
@@ -60,7 +61,7 @@ export const CreateCoursePage: React.FC = () => {
     const questionData: QuestionBlock = {
       title: e.target.elements.title.value,
       image: e.target.elements.image.value,
-      options: [
+      alternatives: [
         e.target.elements.option1.value,
         e.target.elements.option2.value,
         e.target.elements.option3.value,
@@ -126,7 +127,17 @@ export const CreateCoursePage: React.FC = () => {
 
       <VBox>
         {textSegments.map((textCardData) => (
-          <TextCard {...textCardData} />
+          <>
+            <TextCard {...textCardData} />
+            <VSeparator />
+          </>
+        ))}
+
+        {questionSegments.map((questionCardData) => (
+          <>
+            <QuestionCard {...questionCardData} />
+            <VSeparator />
+          </>
         ))}
       </VBox>
 
