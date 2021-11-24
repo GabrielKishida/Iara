@@ -5,14 +5,17 @@ import {
   ImageCardContainer,
   ImageRow,
 } from "./QuestionCard.style";
-import { Col } from "../theme/grid";
+import { Col, Row } from "../theme/grid";
 import { H4 } from "../typography";
 import { COLORS } from "../theme";
+import { DeleteButton } from "..";
 
 export interface QuestionCardProps {
   title: string;
   image?: string;
   alternatives: string[];
+  creating?: boolean;
+  onDelete?: () => void;
 }
 
 export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
@@ -22,7 +25,16 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
   return (
     <CardContainer inputColor="white">
       <div>
-        <H4>{props.title}</H4>
+        <Row justifyContent="space-between">
+          <Col>
+            <H4>{props.title}</H4>
+          </Col>
+          {props.creating && (
+            <Col>
+              <DeleteButton onClick={props.onDelete}>Deletar</DeleteButton>
+            </Col>
+          )}
+        </Row>
       </div>
       <ImageRow>
         <Col>

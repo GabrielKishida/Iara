@@ -9,7 +9,7 @@ import { H3, H4 } from "../../components/typography";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { VSeparator } from "../../components";
+import { PrimaryButton, VSeparator } from "../../components";
 import { VBox } from "../../components/theme/grid";
 import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
@@ -23,12 +23,21 @@ export const CreateCoursePage: React.FC = () => {
   const alternatives = [];
 
   for (var i = 0; i < 6; i++) {
-    alternatives.push(
-      <Form.Group as={Col} controlId={"option" + (i + 1).toString()}>
-        <Form.Label>Alternativa {i + 1}</Form.Label>
-        <Form.Control />
-      </Form.Group>
-    );
+    if (i == 0) {
+      alternatives.push(
+        <Form.Group as={Col} controlId={"option" + (i + 1).toString()}>
+          <Form.Label>Resposta</Form.Label>
+          <Form.Control />
+        </Form.Group>
+      );
+    } else {
+      alternatives.push(
+        <Form.Group as={Col} controlId={"option" + (i + 1).toString()}>
+          <Form.Label>Alternativa {i + 1}</Form.Label>
+          <Form.Control />
+        </Form.Group>
+      );
+    }
   }
 
   interface TextBlock {
@@ -72,6 +81,32 @@ export const CreateCoursePage: React.FC = () => {
       index: textSegments.length + questionSegments.length,
     };
     setQuestionSegments(questionSegments.concat(questionData));
+  };
+
+  const handleDeleteTextSegment = (textSegment: TextBlock) => {
+    let textArray = textSegments;
+    var index = textArray.indexOf(textSegment);
+    if (index !== -1) {
+      textArray.splice(index, 1);
+      if (textArray.length > 0) {
+        setTextSegments(textArray);
+      } else {
+        setTextSegments([]);
+      }
+    }
+  };
+
+  const handleDeleteQuestionSegment = (questionSegment: QuestionBlock) => {
+    let questionArray = questionSegments;
+    var index = questionArray.indexOf(questionSegment);
+    if (index !== -1) {
+      questionArray.splice(index, 1);
+      if (questionArray.length > 0) {
+        setQuestionSegments(questionArray);
+      } else {
+        setQuestionSegments([]);
+      }
+    }
   };
 
   return (
@@ -128,19 +163,29 @@ export const CreateCoursePage: React.FC = () => {
       <VBox>
         {textSegments.map((textCardData) => (
           <>
-            <TextCard {...textCardData} />
+            <TextCard
+              {...textCardData}
+              creating
+              onDelete={() => handleDeleteTextSegment(textCardData)}
+            />
             <VSeparator />
           </>
         ))}
 
         {questionSegments.map((questionCardData) => (
           <>
-            <QuestionCard {...questionCardData} />
+            <QuestionCard
+              {...questionCardData}
+              creating
+              onDelete={() => handleDeleteQuestionSegment(questionCardData)}
+            />
             <VSeparator />
           </>
         ))}
       </VBox>
 
+      <VSeparator />
+      <PrimaryButton>Submeter</PrimaryButton>
       <VSeparator />
     </CourseGrid>
   );

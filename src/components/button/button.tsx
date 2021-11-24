@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { COLORS, SPACING } from "../theme";
 import Button from "react-bootstrap/Button";
-import * as url_twitter from "../assets/images/twitter.png";
 
 export const HeaderLink = styled(Button).attrs(() => ({
   variant: "outline-link",
@@ -33,6 +32,14 @@ export const PrimaryButton = styled(Button).attrs(() => ({
   padding: ${SPACING.medium}px;
 `;
 
+export const DeleteButton = styled(Button).attrs(() => ({
+  variant: "danger",
+}))`
+  font-weight: bold;
+  font-family: "Montserrat", regular;
+  font-size: 18px;
+`;
+
 interface LinkButtonProps {
   delete?: boolean;
 }
@@ -53,9 +60,8 @@ interface SocialMediaButtonProps {
   url: string;
 }
 
-
 export const SocialMediaButton = styled(Button).attrs(() => ({
-  variant:"shadow-none"
+  variant: "shadow-none",
 }))`
   background-color: ${COLORS.areia};
   width: 20px;
@@ -65,8 +71,7 @@ export const SocialMediaButton = styled(Button).attrs(() => ({
   margin: 5px;
   line-height: 20px;
   padding: 0;
-  background-image: url(${(props: SocialMediaButtonProps) =>
-    props.url});
+  background-image: url(${(props: SocialMediaButtonProps) => props.url});
   background-size: cover;
   background-repeat: no-repeat;
 `;
