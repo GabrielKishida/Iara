@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { H3, H4, H5, Body, VSeparator, HSeparator } from "../../components";
 import { Col, Grid, Row } from "../../components/theme/grid";
-import { WhiteBox, RoundedWhiteBox } from "../../components/white_box/white_box";
+import {
+  WhiteBox,
+  RoundedWhiteBox,
+} from "../../components/white_box/white_box";
 import Form from "react-bootstrap/Form";
 import { CardContainer } from "../../components/card/card.style";
 import { COLORS } from "../../components/theme";
 import MOCK_RESULTS from "./SearchResultsMock";
 
-export const SearchPage: React.FC = () => {
+import { Link } from "react-router-dom";
 
+export const SearchPage: React.FC = () => {
   interface Result {
     id: number;
     name: string;
@@ -23,32 +27,29 @@ export const SearchPage: React.FC = () => {
   const setField = (field: string, value: string) => {
     setForm({
       ...form,
-      [field]: value
-    })
+      [field]: value,
+    });
 
     // if the search has already been submitted and the field changed is a filter,
     // submit again
-    if (isSearching && field != 'search') {
+    if (isSearching && field != "search") {
       handleSubmit(null);
     }
-  }
+  };
 
   const handleSubmit = (e: any) => {
     if (e != null) {
       e.preventDefault();
       setIsSearching(true);
-      console.log('Pesquisa submetida');
+      console.log("Pesquisa submetida");
     } else {
-      console.log('Filtro alterado');
+      console.log("Filtro alterado");
     }
-
-  }
+  };
 
   useEffect(() => {
-    if (isSearching)
-      setResults(MOCK_RESULTS);
-    else
-      setResults([]);
+    if (isSearching) setResults(MOCK_RESULTS);
+    else setResults([]);
   }, [isSearching]);
 
   return (
@@ -66,7 +67,11 @@ export const SearchPage: React.FC = () => {
               <Form onSubmit={handleSubmit}>
                 <Row>
                   <Form.Group controlId="search">
-                    <Form.Control onChange={e => setField('search', e.target.value)} type="text" placeholder="Pesquise aqui..." />
+                    <Form.Control
+                      onChange={(e) => setField("search", e.target.value)}
+                      type="text"
+                      placeholder="Pesquise aqui..."
+                    />
                   </Form.Group>
                 </Row>
                 <VSeparator />
@@ -87,7 +92,12 @@ export const SearchPage: React.FC = () => {
                               <Row>
                                 <Body white>
                                   <Form.Check
-                                    onChange={e => setField('filter-duration-short', String(e.target.checked))}
+                                    onChange={(e) =>
+                                      setField(
+                                        "filter-duration-short",
+                                        String(e.target.checked)
+                                      )
+                                    }
                                     type={"checkbox"}
                                     id={"filter-duration-short"}
                                   />
@@ -96,7 +106,12 @@ export const SearchPage: React.FC = () => {
                               <Row>
                                 <Body white>
                                   <Form.Check
-                                    onChange={e => setField('filter-duration-medium', String(e.target.checked))}
+                                    onChange={(e) =>
+                                      setField(
+                                        "filter-duration-medium",
+                                        String(e.target.checked)
+                                      )
+                                    }
                                     type={"checkbox"}
                                     id={"filter-duration-medium"}
                                   />
@@ -105,7 +120,12 @@ export const SearchPage: React.FC = () => {
                               <Row>
                                 <Body white>
                                   <Form.Check
-                                    onChange={e => setField('filter-duration-long', String(e.target.checked))}
+                                    onChange={(e) =>
+                                      setField(
+                                        "filter-duration-long",
+                                        String(e.target.checked)
+                                      )
+                                    }
                                     type={"checkbox"}
                                     id={"filter-duration-long"}
                                   />
@@ -125,19 +145,13 @@ export const SearchPage: React.FC = () => {
                             </Col>
                             <Col>
                               <Row>
-                                <Body white>
-                                  Curto
-                                </Body>
+                                <Body white>Curto</Body>
                               </Row>
                               <Row>
-                                <Body white>
-                                  Médio
-                                </Body>
+                                <Body white>Médio</Body>
                               </Row>
                               <Row>
-                                <Body white>
-                                  Longo
-                                </Body>
+                                <Body white>Longo</Body>
                               </Row>
                             </Col>
                           </Row>
@@ -152,7 +166,12 @@ export const SearchPage: React.FC = () => {
                               <Row>
                                 <Body white>
                                   <Form.Check
-                                    onChange={e => setField('filter-difficulty-easy', String(e.target.checked))}
+                                    onChange={(e) =>
+                                      setField(
+                                        "filter-difficulty-easy",
+                                        String(e.target.checked)
+                                      )
+                                    }
                                     type={"checkbox"}
                                     id={"filter-difficulty-easy"}
                                   />
@@ -161,7 +180,12 @@ export const SearchPage: React.FC = () => {
                               <Row>
                                 <Body white>
                                   <Form.Check
-                                    onChange={e => setField('filter-difficulty-medium', String(e.target.checked))}
+                                    onChange={(e) =>
+                                      setField(
+                                        "filter-difficulty-medium",
+                                        String(e.target.checked)
+                                      )
+                                    }
                                     type={"checkbox"}
                                     id={"filter-difficulty-medium"}
                                   />
@@ -170,7 +194,12 @@ export const SearchPage: React.FC = () => {
                               <Row>
                                 <Body white>
                                   <Form.Check
-                                    onChange={e => setField('filter-difficulty-hard', String(e.target.checked))}
+                                    onChange={(e) =>
+                                      setField(
+                                        "filter-difficulty-hard",
+                                        String(e.target.checked)
+                                      )
+                                    }
                                     type={"checkbox"}
                                     id={"filter-difficulty-hard"}
                                   />
@@ -190,19 +219,13 @@ export const SearchPage: React.FC = () => {
                             </Col>
                             <Col>
                               <Row>
-                                <Body white>
-                                  Fácil
-                                </Body>
+                                <Body white>Fácil</Body>
                               </Row>
                               <Row>
-                                <Body white>
-                                  Médio
-                                </Body>
+                                <Body white>Médio</Body>
                               </Row>
                               <Row>
-                                <Body white>
-                                  Difícil
-                                </Body>
+                                <Body white>Difícil</Body>
                               </Row>
                             </Col>
                           </Row>
@@ -226,8 +249,14 @@ export const SearchPage: React.FC = () => {
               <RoundedWhiteBox>
                 <Row>
                   <Col>
-                    <H4> {resultData.name} </H4>
-                    <Body> Duração: {resultData.duration} - Dificuldade: {resultData.difficulty} </Body>
+                    <Link to={"/course/" + resultData.id}>
+                      <H4> {resultData.name} </H4>
+                    </Link>
+                    <Body>
+                      {" "}
+                      Duração: {resultData.duration} - Dificuldade:{" "}
+                      {resultData.difficulty}{" "}
+                    </Body>
                     <VSeparator />
                   </Col>
                 </Row>
@@ -241,10 +270,7 @@ export const SearchPage: React.FC = () => {
           </Row>
           <VSeparator />
         </React.Fragment>
-      ))
-      }
-    </Grid >
+      ))}
+    </Grid>
   );
-}
-
-
+};

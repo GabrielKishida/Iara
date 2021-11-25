@@ -16,7 +16,7 @@ export const CursosPopulares: React.FC = (props) => {
     <CursosContainer>
       <H3>Cursos Populares</H3>
 
-      <StyledLink to="/course" style={{ textDecoration: "none" }}>
+      <StyledLink to="/course/1" style={{ textDecoration: "none" }}>
         <StyledCard>
           <Stripe>
             <StyledCardBody>
@@ -26,7 +26,7 @@ export const CursosPopulares: React.FC = (props) => {
         </StyledCard>
       </StyledLink>
 
-      <StyledLink to="/course" style={{ textDecoration: "none" }}>
+      <StyledLink to="/course/2" style={{ textDecoration: "none" }}>
         <StyledCard>
           <Stripe>
             <Card.Body>
@@ -36,7 +36,7 @@ export const CursosPopulares: React.FC = (props) => {
         </StyledCard>
       </StyledLink>
 
-      <Link to="/course" style={{ textDecoration: "none" }}>
+      <Link to="/course/3" style={{ textDecoration: "none" }}>
         <StyledCard>
           <Stripe>
             <Card.Body>
