@@ -5,8 +5,6 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { ProgressBar } from "react-bootstrap";
 import { useState } from "react";
 import { PrimaryButton } from "../../components/button/button"
-import { COLORS } from "../../components/theme";
-
 
 export const CoursePage: React.FC = () => {
   const [show, setShow] = useState(false);

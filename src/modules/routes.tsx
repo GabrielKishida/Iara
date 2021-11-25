@@ -1,5 +1,6 @@
 import { MainPage } from "./MainPage/MainPage";
 import { CoursePage } from "./CoursePage/CoursePage";
+import { CreateCoursePage } from "./CreateCoursePage/CreateCoursePage";
 import { UserPage } from "./UserPage/UserPage";
 import { BrowserRouter, Route } from "react-router-dom";
 import { SearchPage } from "./SearchPage/SearchPage";
@@ -15,6 +16,7 @@ const Routes: React.FC = (props) => {
       {props.children}
       <Route path="/" exact component={MainPage} />
       <Route path="/course" exact component={CoursePage} />
+      <Route path="/create-course" exact component={CreateCoursePage} />
       <Route path="/user" exact component={UserPage} />
       <Route path="/search" exact component={SearchPage} />
       <Route path="/classes/finished" exact component={FinishedClassesPage} />
