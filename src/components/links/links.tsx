@@ -1,5 +1,4 @@
 import { H3, H4, H5, Body } from "../typography";
-import { VSeparator, HSeparator } from "../theme";
 import { StyledNav, StyledLink, StyledItem } from "./links.style";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -11,13 +10,6 @@ export const Links: React.FC = (props) => {
         <StyledLink>
           <Link to="/">
             <Body white>Home</Body>
-          </Link>
-        </StyledLink>
-      </StyledItem>
-      <StyledItem>
-        <StyledLink>
-          <Link to="/course">
-            <Body white>Cursos</Body>
           </Link>
         </StyledLink>
       </StyledItem>

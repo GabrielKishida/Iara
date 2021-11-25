@@ -2,15 +2,19 @@ import styled from "styled-components";
 import { COLORS, SPACING } from "../theme";
 
 interface CardContainerProps {
+  opacity?: number;
   color?: string;
 }
 
 export const CardContainer = styled.div`
+  display: flex;
   background-color: ${(props: CardContainerProps) =>
     props.color ?? COLORS.verdeEscuro};
   border-radius: ${SPACING.borderRadius}px;
   padding: ${SPACING.medium}px;
   flex-direction: row;
+  ${(props: CardContainerProps) =>
+    props.opacity && `opacity: ${props.opacity}`};
 `;
 
 export const MockCircle = styled.div`

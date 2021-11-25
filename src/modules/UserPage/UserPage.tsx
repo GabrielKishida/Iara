@@ -1,3 +1,4 @@
+import React from "react";
 import {
   H1,
   H3,
@@ -7,13 +8,19 @@ import {
   HSeparator,
 } from "../../components";
 import { LinkButton } from "../../components/button";
-import { ClassCard } from "../../components/card/class_card";
+import { ClassCard, CreateClassCard } from "../../components/card/class_card";
 import { Col, Grid, Row, VBox } from "../../components/theme/grid";
 import { WhiteBox } from "../../components/white_box/white_box";
 
-import { Link } from "react-router-dom";
+import { Link, RouterProps } from "react-router-dom";
 
-export const UserPage: React.FC = () => {
+export const UserPage: React.FC<RouterProps> = (props) => {
+  const [userRole, setUserRole] = React.useState("Professor");
+
+  const handleClickClass = (id: string) => {
+    props.history.push("/class/" + id);
+  };
+
   return (
     <Grid>
       <Row>
@@ -25,17 +32,25 @@ export const UserPage: React.FC = () => {
             <Col size={1}>
               <ProfileCard
                 title="Joaquim"
-                role="Aluno"
+                role={userRole}
                 subtitle="18 cursos completos"
                 description="Descrição de perfil e muitas outras coisas relevantes tipo o alfabeto inteiro a b c d e f ..."
               />
             </Col>
+            <HSeparator huge />
+            <HSeparator huge />
+            <HSeparator huge />
+            <HSeparator huge />
             <Col size={3}>
               <LinkButton>Editar Perfil</LinkButton>
               <VSeparator half />
               <LinkButton delete>Apagar Perfil</LinkButton>
               <VSeparator half />
-              <LinkButton>Quero ser um professor</LinkButton>
+              <LinkButton>
+                {userRole === "Professor"
+                  ? "Deixar de ser professor"
+                  : "Quero ser um professor"}
+              </LinkButton>
               <VSeparator half />
             </Col>
           </Row>
@@ -44,6 +59,39 @@ export const UserPage: React.FC = () => {
       <VSeparator />
       <Row>
         <VBox>
+          {userRole === "Professor" && (
+            <>
+              <Row justifyContent="space-between" alignItems="flex-end">
+                <H3>Crie Aulas</H3>
+              </Row>
+              <Row justifyContent="flex-start">
+                <CreateClassCard />
+              </Row>
+
+              <Row justifyContent="space-between" alignItems="flex-end">
+                <H3>Suas aulas</H3>
+                <Link to="/classes/my-classes">
+                  <LinkText>Ver mais</LinkText>
+                </Link>
+              </Row>
+
+              <Row justifyContent="flex-start">
+                <HSeparator />
+                {MOCK_CLASSES.map((classData) => (
+                  <>
+                    <ClassCard
+                      classType="teacher"
+                      name={classData.name}
+                      description={classData.description}
+                    />
+                    <HSeparator />
+                  </>
+                ))}
+              </Row>
+              <VSeparator />
+            </>
+          )}
+
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Aulas em progresso</H3>
             <Link to="/classes/in-progress">
@@ -59,6 +107,7 @@ export const UserPage: React.FC = () => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
+                  onClick={() => handleClickClass(classData.id)}
                 />
                 <HSeparator />
               </>
@@ -80,6 +129,7 @@ export const UserPage: React.FC = () => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
+                  onClick={() => handleClickClass(classData.id)}
                 />
                 <HSeparator />
               </>
@@ -93,18 +143,21 @@ export const UserPage: React.FC = () => {
 
 const MOCK_CLASSES = [
   {
+    id: "1",
     name: "Aula I",
     progress: 34,
     description:
       "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
   },
   {
+    id: "2",
     name: "Aula II",
     progress: 74,
     description:
       "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
   },
   {
+    id: "3",
     name: "Aula III",
     progress: 99,
     description:
