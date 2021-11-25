@@ -1,6 +1,6 @@
 import { MainPage } from "./MainPage/MainPage";
 import { CoursePage } from "./CoursePage/CoursePage";
-import { CreateCoursePage } from "./CreateCoursePage/CreateCoursePage";
+import { CreateClassPage } from "./CreateClassPage/CreateClassPage";
 import { UserPage } from "./UserPage/UserPage";
 import { BrowserRouter, Route } from "react-router-dom";
 import { SearchPage } from "./SearchPage/SearchPage";
@@ -15,12 +15,12 @@ const Routes: React.FC = (props) => {
     <BrowserRouter>
       {props.children}
       <Route path="/" exact component={MainPage} />
-      <Route path="/course" exact component={CoursePage} />
-      <Route path="/create-course" exact component={CreateCoursePage} />
+      <Route path="/class/:courseid/:classid" exact component={ClassPage} />
+      <Route path="/create-class" exact component={CreateClassPage} />
       <Route path="/user" exact component={UserPage} />
       <Route path="/search" exact component={SearchPage} />
       <Route path="/classes/finished" exact component={FinishedClassesPage} />
-      <Route path="/class/:classid" component={ClassPage} />
+      <Route path="/course/:courseid" component={CoursePage} />
       <Route
         path="/classes/in-progress"
         exact

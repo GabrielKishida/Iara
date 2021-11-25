@@ -1,102 +1,111 @@
-import React from "react";
-import { H3, H4, Body, VSeparator, HSeparator } from "../../components";
-import { Col, Grid, Row, VBox } from "../../components/theme/grid";
-import { WhiteBox } from "../../components/white_box/white_box";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import ClassPageMock from "./ClassPageMock";
+import {
+  Course,
+  Chapter,
+  ChapterCheckbox,
+  CourseGrid,
+} from "./ClassPage.style";
+import { H3, H4, Body } from "../../components/typography";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { ProgressBar } from "react-bootstrap";
+import { useState } from "react";
+import { PrimaryButton } from "../../components/button/button";
 
-import { RouterProps, useParams } from "react-router-dom";
-import { MockCircle, TopicsContainer } from "./components/class_topic";
-import { MockSmallCircle } from "../../components/card/card.style";
-import { PrimaryButton } from "../../components/button";
+export const ClassPage: React.FC = () => {
+  const [show, setShow] = useState(false);
 
-export const ClassPage: React.FC<RouterProps> = (props) => {
-  const { classid } = useParams<{ classid: string }>();
-  return (
-    <Grid>
-      <Row>
-        <WhiteBox>
-          <Row justifyContent="space-between" alignItems="center">
-            <Col>
-              <H3>{MOCK_CLASS.title + " " + classid}</H3>
-              <Body>{MOCK_CLASS.description}</Body>
-            </Col>
-            <HSeparator huge />
-            <MockCircle />
-          </Row>
-          <VSeparator />
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-          <VSeparator />
-
-          <Row justifyContent="space-between">
-            {MOCK_CLASS?.progress && (
-              <Col>
-                <H4>Progresso atual: {MOCK_CLASS.progress}%</H4>
-                <ProgressBar now={MOCK_CLASS.progress} />
-              </Col>
-            )}
-            <Col>
-              <PrimaryButton>
-                {MOCK_CLASS.progress ? "Continuar aula" : "Começar aula"}
-              </PrimaryButton>
-            </Col>
-          </Row>
-        </WhiteBox>
-      </Row>
-      <VSeparator />
-      <VBox>
-        <Row>
-          <Col>
-            <TopicsContainer>
-              <VBox>
-                <H3>Tópicos</H3>
-                <VSeparator />
-                {MOCK_CLASS.topics.map((topic) => (
-                  <>
-                    <Row>
-                      <Col>
-                        <MockSmallCircle />
-                      </Col>
-                      <HSeparator />
-
-                      <Col>
-                        <Row justifyContent="flex-start">
-                          <H4>{topic.name}</H4>
-                        </Row>
-                        <Row justifyContent="flex-start">
-                          <Body>{topic.description}</Body>
-                        </Row>
-                      </Col>
-                    </Row>
-                    <VSeparator />
-                  </>
-                ))}
-              </VBox>
-            </TopicsContainer>
-          </Col>
-        </Row>
-      </VBox>
-    </Grid>
+  const [progress, setProgress] = useState(0);
+  const [isChecked, setIsChecked] = useState(
+    new Array(ClassPageMock.content.length).fill(false)
   );
-};
 
-const MOCK_CLASS = {
-  title: "Aula Genérica",
-  progress: 34,
-  description:
-    "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  topics: [
-    {
-      name: "Introdução",
-      description: "Descrição do tópico de introdução, e o que ele contém.",
-    },
-    {
-      name: "Desenvolvimento",
-      description:
-        "Descrição do tópico de desenvolvimento, e o que ele contém.",
-    },
-    {
-      name: "Conclusão",
-      description: "Descrição do tópico de conclusão, e o que ele contém.",
-    },
-  ],
+  const handleOnChange = (position: number) => {
+    const updatedCheckedState = isChecked.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setIsChecked(updatedCheckedState);
+
+    const totalProgress = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum + 100 / updatedCheckedState.length;
+        }
+        return sum;
+      },
+      0
+    );
+
+    setProgress(totalProgress);
+  };
+
+  return (
+    <CourseGrid>
+      <div style={{ width: "60%" }}>
+        <PrimaryButton
+          variant="primary"
+          onClick={handleShow}
+          style={{ marginTop: "50px" }}
+        >
+          Capítulos
+        </PrimaryButton>
+
+        <Offcanvas show={show} onHide={handleClose} placement="end">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Capítulos e Progresso</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <div>
+              <H4>Progresso</H4>
+              <ProgressBar style={{ marginBottom: "50px" }} now={progress} />
+            </div>
+            <H4>Capítulos</H4>
+            <div>
+              {ClassPageMock.content.map((value, index) => {
+                return (
+                  <Chapter
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Body>{value.title}</Body>
+                    <ChapterCheckbox
+                      type="checkbox"
+                      checked={isChecked[index]}
+                      onChange={() => handleOnChange(index)}
+                    />
+                  </Chapter>
+                );
+              })}
+            </div>
+          </Offcanvas.Body>
+        </Offcanvas>
+
+        <Course>
+          {ClassPageMock.content.map((value) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  flexDirection: "column",
+                  width: "100%",
+                }}
+              >
+                <H3>{value.title}</H3>
+                <div style={{ width: "100%", marginBottom: "100px" }}>
+                  {value.content}
+                </div>
+              </div>
+            );
+          })}
+        </Course>
+      </div>
+    </CourseGrid>
+  );
 };

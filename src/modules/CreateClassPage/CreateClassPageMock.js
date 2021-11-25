@@ -1,7 +1,7 @@
 import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
 
-const CoursePageMock = {
+const ClassPageMock = {
   content: [
     {
       title: "Escalas Maiores",
@@ -25,4 +25,4 @@ const CoursePageMock = {
     },
   ],
 };
-export default CoursePageMock;
+export default ClassPageMock;

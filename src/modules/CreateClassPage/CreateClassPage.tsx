@@ -4,7 +4,7 @@ import {
   Card,
   SubmitButton,
   PageTitle,
-} from "./CreateCoursePage.style";
+} from "./CreateClassPage.style";
 import { H3, H4 } from "../../components/typography";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -14,7 +14,7 @@ import { VBox } from "../../components/theme/grid";
 import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
 
-export const CreateCoursePage: React.FC = () => {
+export const CreateClassPage: React.FC = () => {
   const [textSegments, setTextSegments] = React.useState<TextBlock[]>([]);
   const [questionSegments, setQuestionSegments] = React.useState<
     QuestionBlock[]
