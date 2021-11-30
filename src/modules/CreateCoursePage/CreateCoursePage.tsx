@@ -4,7 +4,13 @@ import { H2, H4 } from "../../components/typography";
 import Form from "react-bootstrap/Form";
 import { PrimaryButton, VSeparator } from "../../components";
 
-export const CreateCoursePage: React.FC = () => {
+import { RouterProps } from "react-router-dom";
+
+export const CreateCoursePage: React.FC<RouterProps> = (props) => {
+  const handleClickCreate = () => {
+    props.history.push("/edit-course/1");
+  };
+
   return (
     <CourseGrid>
       <PageTitle>
@@ -63,7 +69,7 @@ export const CreateCoursePage: React.FC = () => {
       </Card>
 
       <VSeparator />
-      <PrimaryButton>Submeter</PrimaryButton>
+      <PrimaryButton onClick={handleClickCreate}>Submeter</PrimaryButton>
       <VSeparator />
     </CourseGrid>
   );
