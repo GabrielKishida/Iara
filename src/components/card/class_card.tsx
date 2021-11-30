@@ -1,6 +1,6 @@
 import { H4, Body } from "../typography";
 import { VSeparator, HSeparator, COLORS } from "../theme";
-import { CardContainer, MockCircle, MockSmallCircle } from "./card.style";
+import { CardContainer, MockSmallCircle } from "./card.style";
 import React from "react";
 import { Col, Row } from "../theme/grid";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -60,16 +60,27 @@ export const ClassCard: React.FC<ClassCardProps> = (props) => {
   );
 };
 
-export const CreateClassCard: React.FC = (props) => {
+interface CreateClassCardProps {
+  onClick: () => void;
+}
+
+export const CreateClassCard: React.FC<CreateClassCardProps> = (props) => {
+  const [cardOpacity, setCardOpacity] = React.useState(1.0);
   return (
-    <CardContainer color={COLORS.azulRio}>
+    <CardContainer
+      color={COLORS.azulRio}
+      onClick={props.onClick}
+      opacity={cardOpacity}
+      onPointerEnter={() => setCardOpacity(0.8)}
+      onPointerLeave={() => setCardOpacity(1.0)}
+    >
       <Row>
         <Col>
           <MockSmallCircle />
         </Col>
         <HSeparator />
         <Col>
-          <H4 white>{"Criar Aula"}</H4>
+          <H4 white>{"Criar Curso"}</H4>
           <VSeparator half />
           <div>
             <Body white>{"Crie conteúdo para seus alunos"}</Body>
