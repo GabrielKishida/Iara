@@ -9,6 +9,7 @@ import { InProgressClassesPage } from "./ClassesPage/InProgressClassesPage";
 import { LoginPage } from "./AuthPage/LoginPage";
 import { SignupPage } from "./AuthPage/SignupPage";
 import { ClassPage } from "./ClassPage/ClassPage";
+import { CreateCoursePage } from "./CreateCoursePage/CreateCoursePage";
 
 const Routes: React.FC = (props) => {
   return (
@@ -17,6 +18,7 @@ const Routes: React.FC = (props) => {
       <Route path="/" exact component={MainPage} />
       <Route path="/class/:courseid/:classid" exact component={ClassPage} />
       <Route path="/create-class" exact component={CreateClassPage} />
+      <Route path="/create-course" exact component={CreateCoursePage} />
       <Route path="/user" exact component={UserPage} />
       <Route path="/search" exact component={SearchPage} />
       <Route path="/classes/finished" exact component={FinishedClassesPage} />
