@@ -80,7 +80,7 @@ export const CreateClassCard: React.FC<CreateClassCardProps> = (props) => {
         </Col>
         <HSeparator />
         <Col>
-          <H4 white>{"Criar Aula"}</H4>
+          <H4 white>{"Criar Curso"}</H4>
           <VSeparator half />
           <div>
             <Body white>{"Crie conteúdo para seus alunos"}</Body>

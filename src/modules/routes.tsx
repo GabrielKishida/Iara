@@ -10,6 +10,8 @@ import { LoginPage } from "./AuthPage/LoginPage";
 import { SignupPage } from "./AuthPage/SignupPage";
 import { ClassPage } from "./ClassPage/ClassPage";
 import { CreateCoursePage } from "./CreateCoursePage/CreateCoursePage";
+import { EditCoursePage } from "./CoursePage/EditCoursePage";
+import { MyClassesPage } from "./ClassesPage/MyClassesPage";
 
 const Routes: React.FC = (props) => {
   return (
@@ -17,17 +19,20 @@ const Routes: React.FC = (props) => {
       {props.children}
       <Route path="/" exact component={MainPage} />
       <Route path="/class/:courseid/:classid" exact component={ClassPage} />
-      <Route path="/create-class" exact component={CreateClassPage} />
+      <Route path="/create-class/:courseid" exact component={CreateClassPage} />
       <Route path="/create-course" exact component={CreateCoursePage} />
+      <Route path="/edit-course/:courseid" exact component={EditCoursePage} />
       <Route path="/user" exact component={UserPage} />
       <Route path="/search" exact component={SearchPage} />
-      <Route path="/classes/finished" exact component={FinishedClassesPage} />
+
       <Route path="/course/:courseid" component={CoursePage} />
       <Route
-        path="/classes/in-progress"
+        path="/courses/in-progress"
         exact
         component={InProgressClassesPage}
       />
+      <Route path="/courses/finished" exact component={FinishedClassesPage} />
+      <Route path="/courses/my-courses" exact component={MyClassesPage} />
       <Route path="/login" exact component={LoginPage} />
       <Route path="/signup" exact component={SignupPage} />
     </BrowserRouter>

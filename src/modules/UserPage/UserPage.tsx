@@ -17,12 +17,16 @@ import { Link, RouterProps } from "react-router-dom";
 export const UserPage: React.FC<RouterProps> = (props) => {
   const [userRole, setUserRole] = React.useState("Professor");
 
-  const handleClickClass = (id: string) => {
-    props.history.push("/class/" + id);
+  const handleClickCreate = () => {
+    props.history.push("/create-course/");
   };
 
-  const handleClickCreate = () => {
-    props.history.push("/create-class/");
+  const handleClickEdit = (id: string) => {
+    props.history.push("/edit-course/" + id);
+  };
+
+  const handleClickCourse = (id: string) => {
+    props.history.push("/course/" + id);
   };
 
   return (
@@ -71,10 +75,11 @@ export const UserPage: React.FC<RouterProps> = (props) => {
               <Row justifyContent="flex-start">
                 <CreateClassCard onClick={handleClickCreate} />
               </Row>
+              <VSeparator />
 
               <Row justifyContent="space-between" alignItems="flex-end">
-                <H3>Suas cursos</H3>
-                <Link to="/classes/my-classes">
+                <H3>Seus cursos</H3>
+                <Link to="/courses/my-courses">
                   <LinkText>Ver mais</LinkText>
                 </Link>
               </Row>
@@ -87,6 +92,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
                       classType="teacher"
                       name={classData.name}
                       description={classData.description}
+                      onClick={() => handleClickEdit(classData.id)}
                     />
                     <HSeparator />
                   </>
@@ -98,7 +104,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
 
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Cursos em progresso</H3>
-            <Link to="/classes/in-progress">
+            <Link to="/courses/in-progress">
               <LinkText>Ver mais</LinkText>
             </Link>
           </Row>
@@ -111,7 +117,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
-                  onClick={() => handleClickClass(classData.id)}
+                  onClick={() => handleClickCourse(classData.id)}
                 />
                 <HSeparator />
               </>
@@ -121,7 +127,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
 
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Cursos finalizadas</H3>
-            <Link to="/classes/finished">
+            <Link to="/courses/finished">
               <LinkText>Ver mais</LinkText>
             </Link>
           </Row>
@@ -133,7 +139,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
                   name={classData.name}
                   progress={classData.progress}
                   description={classData.description}
-                  onClick={() => handleClickClass(classData.id)}
+                  onClick={() => handleClickCourse(classData.id)}
                 />
                 <HSeparator />
               </>
