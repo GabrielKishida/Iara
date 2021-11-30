@@ -21,6 +21,10 @@ export const UserPage: React.FC<RouterProps> = (props) => {
     props.history.push("/class/" + id);
   };
 
+  const handleClickCreate = () => {
+    props.history.push("/create-class/");
+  };
+
   return (
     <Grid>
       <Row>
@@ -62,14 +66,14 @@ export const UserPage: React.FC<RouterProps> = (props) => {
           {userRole === "Professor" && (
             <>
               <Row justifyContent="space-between" alignItems="flex-end">
-                <H3>Crie Aulas</H3>
+                <H3>Crie Cursos</H3>
               </Row>
               <Row justifyContent="flex-start">
-                <CreateClassCard />
+                <CreateClassCard onClick={handleClickCreate} />
               </Row>
 
               <Row justifyContent="space-between" alignItems="flex-end">
-                <H3>Suas aulas</H3>
+                <H3>Suas cursos</H3>
                 <Link to="/classes/my-classes">
                   <LinkText>Ver mais</LinkText>
                 </Link>
@@ -93,7 +97,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
           )}
 
           <Row justifyContent="space-between" alignItems="flex-end">
-            <H3>Aulas em progresso</H3>
+            <H3>Cursos em progresso</H3>
             <Link to="/classes/in-progress">
               <LinkText>Ver mais</LinkText>
             </Link>
@@ -116,7 +120,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
           <VSeparator />
 
           <Row justifyContent="space-between" alignItems="flex-end">
-            <H3>Aulas finalizadas</H3>
+            <H3>Cursos finalizadas</H3>
             <Link to="/classes/finished">
               <LinkText>Ver mais</LinkText>
             </Link>
@@ -144,23 +148,23 @@ export const UserPage: React.FC<RouterProps> = (props) => {
 const MOCK_CLASSES = [
   {
     id: "1",
-    name: "Aula I",
+    name: "Curso I",
     progress: 34,
     description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
+      "Descrição genérica de uma curso, como os conteúdos abordados e tudo mais que tem em uma curso.",
   },
   {
     id: "2",
-    name: "Aula II",
+    name: "Curso II",
     progress: 74,
     description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
+      "Descrição genérica de uma curso, como os conteúdos abordados e tudo mais que tem em uma curso.",
   },
   {
     id: "3",
-    name: "Aula III",
+    name: "Curso III",
     progress: 99,
     description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
+      "Descrição genérica de uma curso, como os conteúdos abordados e tudo mais que tem em uma curso.",
   },
 ];
