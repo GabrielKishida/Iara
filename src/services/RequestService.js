@@ -1,8 +1,13 @@
 import { ACCESS_TOKEN, USER_DATA, API_BASE_URL } from '../constants';
 
+export const simpleRequest = async () => {
+  const response = await fetch(API_BASE_URL + '/course/1', {mode: 'no-cors'});
+  console.log(response);
+  return response;
+}
+
 export const request = (options) => {
   const headers = new Headers({
-    'Access-Control-Allow-Origin':'*',
     'Content-Type': 'application/json'
   });
 
@@ -21,6 +26,7 @@ export const request = (options) => {
       if (!response.ok) {
         return Promise.reject(json);
       }
+      console.log("ALOALOALO")
       return json;
     }),
   );
@@ -28,8 +34,9 @@ export const request = (options) => {
 
 export function getCourse(){
     const response = request({
-        url: API_BASE_URL + '/course',
+        url: API_BASE_URL + '/course/1',
         method: 'GET',
+        mode:'no-cors'
     })
 
     return response;
