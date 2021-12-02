@@ -22,7 +22,7 @@ const Routes: React.FC = (props) => {
       <Route path="/create-class/:courseid" exact component={CreateClassPage} />
       <Route path="/create-course" exact component={CreateCoursePage} />
       <Route path="/edit-course/:courseid" exact component={EditCoursePage} />
-      <Route path="/user" exact component={UserPage} />
+      <Route path="/user/:userid" exact component={UserPage} />
       <Route path="/search" exact component={SearchPage} />
 
       <Route path="/course/:courseid" component={CoursePage} />
