@@ -21,18 +21,25 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
 
   const { courseid } = useParams<{ courseid: string }>();
 
+  const { classid } = useParams<{ classid: string }>();
+
   const nextClass = () => props.history.push("/course/" + courseid);
 
   const [classContent, setClassContent] = React.useState<Class>();
 
   React.useEffect(() => {
     async function fetchClass() {
-      let response = await request("class/getCompleteClass/6");
+      let response = await request("class/getCompleteClass/" + classid);
       console.log(response)
       setClassContent(response);
     }
     fetchClass();
   }, [setClassContent]);
+
+  React.useEffect(() =>{
+    if (classContent?.texts?.length)
+      setIsChecked(new Array(classContent.texts.length).fill(false));
+  });
 
   const [show, setShow] = useState(false);
 
@@ -40,28 +47,26 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
   const handleShow = () => setShow(true);
 
   const [progress, setProgress] = useState(0);
-  const [isChecked, setIsChecked] = useState(
-    new Array(classContent?.texts.length).fill(false)
-  );
+  const [isChecked, setIsChecked] = useState<Boolean[]>();
 
   const handleOnChange = (position: number) => {
-    const updatedCheckedState = isChecked.map((item, index) =>
+    const updatedCheckedState = isChecked?.map((item, index) =>
       index === position ? !item : item
     );
 
     setIsChecked(updatedCheckedState);
 
-    const totalProgress = updatedCheckedState.reduce(
+    const totalProgress = updatedCheckedState?.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
-          return sum + 100 / updatedCheckedState.length;
+          return sum + 100 / updatedCheckedState?.length;
         }
         return sum;
       },
       0
     );
 
-    setProgress(totalProgress);
+    setProgress(totalProgress ?? 0);
   };
 
   return (
@@ -86,7 +91,7 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
             </div>
             <H4>Capítulos</H4>
             <div>
-              {classContent?.texts.map((value, index) => {
+              {!!classContent && classContent?.texts?.map((value, index) => {
                 return (
                   <Chapter
                     style={{
@@ -98,7 +103,7 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
                     <Body>{value.classEntity?.name && value.classEntity?.name}</Body>
                     <ChapterCheckbox
                       type="checkbox"
-                      checked={isChecked[index]}
+                      checked={!!isChecked?.[index] ?? false}
                       onChange={() => handleOnChange(index)}
                     />
                   </Chapter>
