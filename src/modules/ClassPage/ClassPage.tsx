@@ -14,9 +14,14 @@ import { request } from "../../services/RequestService";
 import { Class } from "../../models/Class";
 import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
+import { RouterProps, useParams } from "react-router-dom";
 import React from "react";
 
-export const ClassPage: React.FC = () => {
+export const ClassPage: React.FC<RouterProps> = (props) => {
+
+  const { courseid } = useParams<{ courseid: string }>();
+
+  const nextClass = () => props.history.push("/course/" + courseid);
 
   const [classContent, setClassContent] = React.useState<Class>();
 
@@ -146,6 +151,12 @@ export const ClassPage: React.FC = () => {
             );
           })}
         </Course>
+        <PrimaryButton
+          variant="primary"
+          style={{float: "right"}}
+          onClick = {nextClass}>
+            Voltar para o curso
+        </PrimaryButton>
       </div>
     </CourseGrid>
   );
