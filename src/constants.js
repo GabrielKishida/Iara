@@ -1,5 +1,5 @@
-export const ACCESS_TOKEN = 'accessToken';
+export const ACCESS_TOKEN = "accessToken";
 
-export const USER_DATA = 'userData';
+export const USER_DATA = "userData";
 
-export const API_BASE_URL = "http://localhost:8082";
+export const API_BASE_URL = "http://localhost:8081";
