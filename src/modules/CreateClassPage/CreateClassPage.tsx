@@ -49,7 +49,11 @@ export const CreateClassPage: React.FC = () => {
 
   interface QuestionBlock {
     title: string;
-    alternatives: string[];
+    alternatives: Array<{
+      id: number;
+      text: string;
+      correct: boolean;
+    }>;
     index: number;
     image?: string;
   }
