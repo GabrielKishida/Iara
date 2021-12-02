@@ -5,3 +5,10 @@ export interface User {
   logo: string;
   bio: string;
 }
+
+export interface UserValidation {
+  id_user_validation: string;
+  username: string;
+  password: string;
+  user: User;
+}
