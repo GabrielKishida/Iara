@@ -36,30 +36,37 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
           )}
         </Row>
       </div>
-      <ImageRow>
-        <Col>
-          <ImageCardContainer inputColor={COLORS.verdeEscuro}>
-            <img src={props.image} />
-          </ImageCardContainer>
-        </Col>
-      </ImageRow>
+      {props.image && (
+        <ImageRow>
+          <Col>
+            <ImageCardContainer inputColor={COLORS.verdeEscuro}>
+              <img src={props.image} />
+            </ImageCardContainer>
+          </Col>
+        </ImageRow>
+      )}
+
       <AnswerRow>
         {AlternativesRow1?.map((value) => {
           return (
-            <AnswerButton>
-              <H4 white>{value}</H4>
-            </AnswerButton>
+            value && (
+              <AnswerButton>
+                <H4 white>{value}</H4>
+              </AnswerButton>
+            )
           );
         })}
       </AnswerRow>
       <AnswerRow>
         {AlternativesRow2?.map((value, index) => {
           return (
-            <Col>
-              <AnswerButton>
-                <H4 white>{value}</H4>
-              </AnswerButton>
-            </Col>
+            value && (
+              <Col>
+                <AnswerButton>
+                  <H4 white>{value}</H4>
+                </AnswerButton>
+              </Col>
+            )
           );
         })}
       </AnswerRow>

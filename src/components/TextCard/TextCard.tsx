@@ -27,13 +27,16 @@ export const TextCard: React.FC<TextCardProps> = (props) => {
           )}
         </Row>
       </div>
-      <ImageRow>
-        <Col>
-          <ImageCardContainer inputColor={COLORS.verdeEscuro}>
-            <img src={props.image} />
-          </ImageCardContainer>
-        </Col>
-      </ImageRow>
+      {props.image && (
+        <ImageRow>
+          <Col>
+            <ImageCardContainer inputColor={COLORS.verdeEscuro}>
+              <img src={props.image} />
+            </ImageCardContainer>
+          </Col>
+        </ImageRow>
+      )}
+
       <Row>
         <Col>
           <H5>{props.text}</H5>
