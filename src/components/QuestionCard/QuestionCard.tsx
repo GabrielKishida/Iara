@@ -9,6 +9,8 @@ import { Col, Row } from "../theme/grid";
 import { H4 } from "../typography";
 import { COLORS } from "../theme";
 import { DeleteButton } from "..";
+import { useState } from "react";
+import Modal from 'react-bootstrap/Modal';
 
 export interface QuestionCardProps {
   title: string;
@@ -23,6 +25,19 @@ export interface QuestionCardProps {
 }
 
 export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
+
+  const checkCorrectAnswer = (correct: boolean) => {
+    handleShow();
+    setCorrectAnswer(correct);
+  }
+
+  const [correctAnswer, setCorrectAnswer] = useState(false);
+  
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const AlternativesRow1 = props.alternatives?.slice(0, 3);
   const AlternativesRow2 = props.alternatives?.slice(3);
 
@@ -54,7 +69,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
         {AlternativesRow1?.map((value) => {
           return (
             value.text && (
-              <AnswerButton>
+              <AnswerButton
+              onClick={() => checkCorrectAnswer(value.correct)}>
                 <H4 white>{value.text}</H4>
               </AnswerButton>
             )
@@ -66,7 +82,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
           return (
             value.text && (
               <Col>
-                <AnswerButton>
+                <AnswerButton
+                onClick={() => checkCorrectAnswer(value.correct)}>
                   <H4 white>{value.text}</H4>
                 </AnswerButton>
               </Col>
@@ -74,6 +91,21 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
           );
         })}
       </AnswerRow>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sua resposta está...</Modal.Title>
+        </Modal.Header>
+        {correctAnswer?
+          <Modal.Body>Certa! Parabéns!</Modal.Body>
+          :
+          <Modal.Body>Errada! Tente novamente!</Modal.Body>
+        }
+        <Modal.Footer>
+          <AnswerButton variant="secondary" onClick={handleClose}>
+            Fechar
+          </AnswerButton>
+        </Modal.Footer>
+      </Modal>
     </CardContainer>
   );
 };
