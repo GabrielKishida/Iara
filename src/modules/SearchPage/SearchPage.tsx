@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { H3, H4, H5, Body, VSeparator, HSeparator } from "../../components";
+import {
+  H3,
+  H4,
+  H5,
+  Body,
+  VSeparator,
+  HSeparator,
+  PrimaryButton,
+} from "../../components";
 import { Col, Grid, Row } from "../../components/theme/grid";
 import {
   WhiteBox,
@@ -8,23 +16,33 @@ import {
 import Form from "react-bootstrap/Form";
 import { CardContainer } from "../../components/card/card.style";
 import { COLORS } from "../../components/theme";
-import MOCK_RESULTS from "./SearchResultsMock";
-
 import { Link } from "react-router-dom";
+import { postRequest } from "../../services/RequestService";
+import { Course } from "../../models/course";
 
 export const SearchPage: React.FC = () => {
-  interface Result {
-    id: number;
+  interface SearchObject {
     name: string;
-    duration: string;
-    difficulty: string;
-    description: string;
+    difficultyIsEasy: string;
+    difficultyIsMedium: string;
+    difficultyIsHard: string;
+    durationIsShort: string;
+    durationIsMedium: string;
+    durationIsLong: string;
   }
-  const [results, setResults] = useState<Result[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const [form, setForm] = useState({});
 
-  const setField = (field: string, value: string) => {
+  const [results, setResults] = useState<Course[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [form, setForm] = useState({
+    filter_duration_short: "false",
+    filter_duration_medium: "false",
+    filter_duration_long: "false",
+    filter_difficulty_easy: "false",
+    filter_difficulty_medium: "false",
+    filter_difficulty_hard: "false",
+  });
+
+  const setField = (field: string, value: any) => {
     setForm({
       ...form,
       [field]: value,
@@ -41,16 +59,18 @@ export const SearchPage: React.FC = () => {
     if (e != null) {
       e.preventDefault();
       setIsSearching(true);
-      console.log("Pesquisa submetida");
-    } else {
-      console.log("Filtro alterado");
+      const postObject: SearchObject = {
+        name: e.target.elements.search.value,
+        difficultyIsEasy: String(form.filter_difficulty_easy),
+        difficultyIsMedium: String(form.filter_difficulty_medium),
+        difficultyIsHard: String(form.filter_difficulty_hard),
+        durationIsShort: String(form.filter_duration_short),
+        durationIsMedium: String(form.filter_duration_medium),
+        durationIsLong: String(form.filter_duration_long),
+      };
+      postRequest("course/search", postObject).then(setResults);
     }
   };
-
-  useEffect(() => {
-    if (isSearching) setResults(MOCK_RESULTS);
-    else setResults([]);
-  }, [isSearching]);
 
   return (
     <Grid>
@@ -76,6 +96,11 @@ export const SearchPage: React.FC = () => {
                 </Row>
                 <VSeparator />
                 <Row>
+                  <PrimaryButton type="submit">Pesquisar</PrimaryButton>
+                </Row>
+
+                <VSeparator />
+                <Row>
                   <Col>
                     <Row>
                       <Col>
@@ -91,44 +116,50 @@ export const SearchPage: React.FC = () => {
                             <Col>
                               <Row>
                                 <Body white>
-                                  <Form.Check
-                                    onChange={(e) =>
-                                      setField(
-                                        "filter-duration-short",
-                                        String(e.target.checked)
-                                      )
-                                    }
-                                    type={"checkbox"}
-                                    id={"filter-duration-short"}
-                                  />
+                                  <Form.Group controlId="filter_duration_short">
+                                    <Form.Check
+                                      onChange={(e) =>
+                                        setField(
+                                          "filter_duration_short",
+                                          e.target.checked
+                                        )
+                                      }
+                                      type={"checkbox"}
+                                      id={"filter_duration_short"}
+                                    />
+                                  </Form.Group>
                                 </Body>
                               </Row>
                               <Row>
                                 <Body white>
-                                  <Form.Check
-                                    onChange={(e) =>
-                                      setField(
-                                        "filter-duration-medium",
-                                        String(e.target.checked)
-                                      )
-                                    }
-                                    type={"checkbox"}
-                                    id={"filter-duration-medium"}
-                                  />
+                                  <Form.Group controlId="filter_duration_medium">
+                                    <Form.Check
+                                      onChange={(e) =>
+                                        setField(
+                                          "filter_duration_medium",
+                                          e.target.checked
+                                        )
+                                      }
+                                      type={"checkbox"}
+                                      id={"filter_duration_medium"}
+                                    />
+                                  </Form.Group>
                                 </Body>
                               </Row>
                               <Row>
                                 <Body white>
-                                  <Form.Check
-                                    onChange={(e) =>
-                                      setField(
-                                        "filter-duration-long",
-                                        String(e.target.checked)
-                                      )
-                                    }
-                                    type={"checkbox"}
-                                    id={"filter-duration-long"}
-                                  />
+                                  <Form.Group controlId="filter_duration_long">
+                                    <Form.Check
+                                      onChange={(e) =>
+                                        setField(
+                                          "filter_duration_long",
+                                          e.target.checked
+                                        )
+                                      }
+                                      type={"checkbox"}
+                                      id={"filter_duration_long"}
+                                    />
+                                  </Form.Group>
                                 </Body>
                               </Row>
                             </Col>
@@ -165,44 +196,50 @@ export const SearchPage: React.FC = () => {
                             <Col>
                               <Row>
                                 <Body white>
-                                  <Form.Check
-                                    onChange={(e) =>
-                                      setField(
-                                        "filter-difficulty-easy",
-                                        String(e.target.checked)
-                                      )
-                                    }
-                                    type={"checkbox"}
-                                    id={"filter-difficulty-easy"}
-                                  />
+                                  <Form.Group controlId="filter_difficulty_easy">
+                                    <Form.Check
+                                      onChange={(e) =>
+                                        setField(
+                                          "filter_difficulty_easy",
+                                          e.target.checked
+                                        )
+                                      }
+                                      type={"checkbox"}
+                                      id={"filter_difficulty_easy"}
+                                    />
+                                  </Form.Group>
                                 </Body>
                               </Row>
                               <Row>
                                 <Body white>
-                                  <Form.Check
-                                    onChange={(e) =>
-                                      setField(
-                                        "filter-difficulty-medium",
-                                        String(e.target.checked)
-                                      )
-                                    }
-                                    type={"checkbox"}
-                                    id={"filter-difficulty-medium"}
-                                  />
+                                  <Form.Group controlId="filter_difficulty_medium">
+                                    <Form.Check
+                                      onChange={(e) =>
+                                        setField(
+                                          "filter_difficulty_medium",
+                                          e.target.checked
+                                        )
+                                      }
+                                      type={"checkbox"}
+                                      id={"filter_difficulty_medium"}
+                                    />
+                                  </Form.Group>
                                 </Body>
                               </Row>
                               <Row>
                                 <Body white>
-                                  <Form.Check
-                                    onChange={(e) =>
-                                      setField(
-                                        "filter-difficulty-hard",
-                                        String(e.target.checked)
-                                      )
-                                    }
-                                    type={"checkbox"}
-                                    id={"filter-difficulty-hard"}
-                                  />
+                                  <Form.Group controlId="filter_difficulty_hard">
+                                    <Form.Check
+                                      onChange={(e) =>
+                                        setField(
+                                          "filter_difficulty_hard",
+                                          e.target.checked
+                                        )
+                                      }
+                                      type={"checkbox"}
+                                      id={"filter_difficulty_hard"}
+                                    />
+                                  </Form.Group>
                                 </Body>
                               </Row>
                             </Col>
@@ -243,13 +280,13 @@ export const SearchPage: React.FC = () => {
       <VSeparator />
 
       {results.map((resultData) => (
-        <React.Fragment key={`result-course-${resultData.id}`}>
-          <Row id={`result-course-${resultData.id}`}>
+        <React.Fragment key={resultData.id_course}>
+          <Row id={String(resultData.id_course)}>
             <Col>
               <RoundedWhiteBox>
                 <Row>
                   <Col>
-                    <Link to={"/course/" + resultData.id}>
+                    <Link to={"/course/" + resultData.id_course}>
                       <H4> {resultData.name} </H4>
                     </Link>
                     <Body>

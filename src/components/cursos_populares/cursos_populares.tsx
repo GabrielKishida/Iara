@@ -1,5 +1,4 @@
-import { H3, H4, H5, Body } from "../typography";
-import { VSeparator, HSeparator } from "../theme";
+import { H3, H5 } from "../typography";
 import {
   CursosContainer,
   StyledCard,
@@ -8,43 +7,39 @@ import {
   StyledCardBody,
 } from "./cursos_populares.style";
 import React from "react";
-import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { request } from "../../services/RequestService";
+import { Course } from "../../models/course";
 
 export const CursosPopulares: React.FC = (props) => {
+  const [courses, setCourses] = React.useState<Course[]>([]);
+
+  React.useEffect(() => {
+    async function fetchPopularCourses() {
+      let response = await request("course/popular");
+      setCourses(response);
+    }
+    fetchPopularCourses();
+  }, [setCourses]);
+
   return (
     <CursosContainer>
       <H3>Cursos Populares</H3>
 
-      <StyledLink to="/course/1" style={{ textDecoration: "none" }}>
-        <StyledCard>
-          <Stripe>
-            <StyledCardBody>
-              <H5 className="col">Curso de Ritmo II</H5>
-            </StyledCardBody>
-          </Stripe>
-        </StyledCard>
-      </StyledLink>
-
-      <StyledLink to="/course/2" style={{ textDecoration: "none" }}>
-        <StyledCard>
-          <Stripe>
-            <Card.Body>
-              <H5 className="col">Curso de Harmonia IV</H5>
-            </Card.Body>
-          </Stripe>
-        </StyledCard>
-      </StyledLink>
-
-      <Link to="/course/3" style={{ textDecoration: "none" }}>
-        <StyledCard>
-          <Stripe>
-            <Card.Body>
-              <H5 className="col">Curso de Partitura</H5>
-            </Card.Body>
-          </Stripe>
-        </StyledCard>
-      </Link>
+      {!!courses &&
+        courses.map((course: Course) => (
+          <StyledLink
+            to={"/course/" + course.id_course}
+            style={{ textDecoration: "none" }}
+          >
+            <StyledCard>
+              <Stripe>
+                <StyledCardBody>
+                  <H5 className="col">{course.name}</H5>
+                </StyledCardBody>
+              </Stripe>
+            </StyledCard>
+          </StyledLink>
+        ))}
     </CursosContainer>
   );
 };

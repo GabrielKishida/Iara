@@ -9,36 +9,45 @@ import { MockCircle, TopicsContainer } from "./components/course_topic";
 import { MockSmallCircle } from "../../components/card/card.style";
 import { PrimaryButton } from "../../components/button";
 import { Link } from "react-router-dom";
+import { Course } from "../../models/course";
+import { request } from "../../services/RequestService";
 
 export const CoursePage: React.FC<RouterProps> = (props) => {
+  const [data, setData] = React.useState<Course>();
   const { courseid } = useParams<{ courseid: string }>();
+
+  React.useEffect(() => {
+    async function fetchData() {
+      setData(await request("course/" + courseid));
+    }
+    fetchData();
+  }, [setData, courseid]);
+
+  //TODO: Add request to get classes from course
+
   return (
     <Grid>
       <Row>
         <WhiteBox>
           <Row justifyContent="space-between" alignItems="center">
             <Col>
-              <H3>{MOCK_CLASS.title + " " + courseid}</H3>
-              <Body>{MOCK_CLASS.description}</Body>
+              <H3>{data?.name}</H3>
+              <Body>{data?.description}</Body>
             </Col>
             <HSeparator huge />
             <MockCircle />
           </Row>
           <VSeparator />
 
-          <VSeparator />
-
           <Row justifyContent="space-between">
-            {MOCK_CLASS?.progress && (
+            {false && (
               <Col>
                 <H4>Progresso atual: {MOCK_CLASS.progress}%</H4>
                 <ProgressBar now={MOCK_CLASS.progress} />
               </Col>
             )}
             <Col>
-              <PrimaryButton>
-                {MOCK_CLASS.progress ? "Continuar aula" : "Começar aula"}
-              </PrimaryButton>
+              <PrimaryButton>{"Começar aula"}</PrimaryButton>
             </Col>
           </Row>
         </WhiteBox>
