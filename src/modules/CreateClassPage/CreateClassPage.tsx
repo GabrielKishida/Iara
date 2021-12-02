@@ -163,7 +163,7 @@ export const CreateClassPage: React.FC = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="image">
             <Form.Label>Insira o endereço URL de uma imagem</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control />
           </Form.Group>
           <Row className="mb-6">{alternatives}</Row>
           <VSeparator half />
