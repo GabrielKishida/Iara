@@ -26,8 +26,6 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
           </Row>
           <VSeparator />
 
-          <VSeparator />
-
           <Row justifyContent="space-between">
             {MOCK_CLASS?.progress && (
               <Col>
