@@ -13,7 +13,11 @@ import { DeleteButton } from "..";
 export interface QuestionCardProps {
   title: string;
   image?: string;
-  alternatives: string[];
+  alternatives?: Array<{
+    id: number;
+    text: string;
+    correct: boolean;
+  }>;
   creating?: boolean;
   onDelete?: () => void;
 }
@@ -49,9 +53,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
       <AnswerRow>
         {AlternativesRow1?.map((value) => {
           return (
-            value && (
+            value.text && (
               <AnswerButton>
-                <H4 white>{value}</H4>
+                <H4 white>{value.text}</H4>
               </AnswerButton>
             )
           );
@@ -60,10 +64,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
       <AnswerRow>
         {AlternativesRow2?.map((value, index) => {
           return (
-            value && (
+            value.text && (
               <Col>
                 <AnswerButton>
-                  <H4 white>{value}</H4>
+                  <H4 white>{value.text}</H4>
                 </AnswerButton>
               </Col>
             )
