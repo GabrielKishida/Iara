@@ -27,7 +27,7 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
 
   React.useEffect(() => {
     async function fetchClass() {
-      let response = await request("class/getCompleteClass/1");
+      let response = await request("class/getCompleteClass/6");
       console.log(response)
       setClassContent(response);
     }
