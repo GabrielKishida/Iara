@@ -54,60 +54,66 @@ export const CreateClassPage: React.FC = () => {
     image?: string;
   }
 
-  const handleSubmitText = (e: any) => {
-    e.preventDefault();
-    const textData: TextBlock = {
-      title: e.target.elements.title.value,
-      text: e.target.elements.classtext.value,
-      index: textSegments.length + questionSegments.length,
-      image: e.target.elements.image.value,
-    };
-    setTextSegments(textSegments.concat(textData));
-  };
+  const handleSubmitText = React.useCallback(
+    (e: any) => {
+      e.preventDefault();
+      const textData: TextBlock = {
+        title: e.target.elements.title.value,
+        text: e.target.elements.classtext.value,
+        index: textSegments.length + questionSegments.length,
+        image: e.target.elements.image.value,
+      };
+      setTextSegments(textSegments.concat(textData));
+    },
+    [setTextSegments, textSegments]
+  );
 
-  const handleSubmitQuestion = (e: any) => {
-    e.preventDefault();
-    const questionData: QuestionBlock = {
-      title: e.target.elements.title.value,
-      image: e.target.elements.image.value,
-      alternatives: [
-        e.target.elements.option1.value,
-        e.target.elements.option2.value,
-        e.target.elements.option3.value,
-        e.target.elements.option4.value,
-        e.target.elements.option5.value,
-        e.target.elements.option6.value,
-      ],
-      index: textSegments.length + questionSegments.length,
-    };
-    setQuestionSegments(questionSegments.concat(questionData));
-  };
+  const handleSubmitQuestion = React.useCallback(
+    (e: any) => {
+      e.preventDefault();
+      const questionData: QuestionBlock = {
+        title: e.target.elements.title.value,
+        image: e.target.elements.image.value,
+        alternatives: [
+          e.target.elements.option1.value,
+          e.target.elements.option2.value,
+          e.target.elements.option3.value,
+          e.target.elements.option4.value,
+          e.target.elements.option5.value,
+          e.target.elements.option6.value,
+        ],
+        index: textSegments.length + questionSegments.length,
+      };
+      setQuestionSegments(questionSegments.concat(questionData));
+    },
+    [setQuestionSegments, questionSegments]
+  );
 
-  const handleDeleteTextSegment = (textSegment: TextBlock) => {
-    let textArray = textSegments;
-    var index = textArray.indexOf(textSegment);
-    if (index !== -1) {
-      textArray.splice(index, 1);
-      if (textArray.length > 0) {
+  const handleDeleteTextSegment = React.useCallback(
+    (textSegment: TextBlock) => {
+      let textArray: TextBlock[] = [];
+      var index = textSegments.indexOf(textSegment);
+      if (index !== -1) {
+        textSegments.splice(index, 1);
+        textArray = textSegments.slice();
         setTextSegments(textArray);
-      } else {
-        setTextSegments([]);
       }
-    }
-  };
+    },
+    [setTextSegments, textSegments]
+  );
 
-  const handleDeleteQuestionSegment = (questionSegment: QuestionBlock) => {
-    let questionArray = questionSegments;
-    var index = questionArray.indexOf(questionSegment);
-    if (index !== -1) {
-      questionArray.splice(index, 1);
-      if (questionArray.length > 0) {
+  const handleDeleteQuestionSegment = React.useCallback(
+    (questionSegment: QuestionBlock) => {
+      let questionArray: QuestionBlock[] = [];
+      var index = questionSegments.indexOf(questionSegment);
+      if (index !== -1) {
+        questionSegments.splice(index, 1);
+        questionArray = questionSegments.slice();
         setQuestionSegments(questionArray);
-      } else {
-        setQuestionSegments([]);
       }
-    }
-  };
+    },
+    [setQuestionSegments, questionSegments]
+  );
 
   return (
     <CourseGrid>
@@ -119,12 +125,12 @@ export const CreateClassPage: React.FC = () => {
         <Form onSubmit={handleSubmitText}>
           <Form.Group className="mb-3" controlId="title">
             <Form.Label>Título</Form.Label>
-            <Form.Control type="text" placeholder="Título da aula" />
+            <Form.Control type="text" placeholder="Título da aula" required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="image">
-            <Form.Label>Insira uma imagem</Form.Label>
-            <Form.Control type="file" />
+            <Form.Label>Insira o endereço URL de uma imagem</Form.Label>
+            <Form.Control type="link" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="classtext">
@@ -145,10 +151,14 @@ export const CreateClassPage: React.FC = () => {
         <Form onSubmit={handleSubmitQuestion}>
           <Form.Group className="mb-3" controlId="title">
             <Form.Label>Título</Form.Label>
-            <Form.Control type="text" placeholder="Título da questão" />
+            <Form.Control
+              type="text"
+              placeholder="Título da questão"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="image">
-            <Form.Label>Insira uma imagem</Form.Label>
+            <Form.Label>Insira o endereço URL de uma imagem</Form.Label>
             <Form.Control type="file" />
           </Form.Group>
           <Row className="mb-6">{alternatives}</Row>
