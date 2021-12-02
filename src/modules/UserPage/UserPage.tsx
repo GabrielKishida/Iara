@@ -20,8 +20,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
   const { userid } = useParams<{ userid: string }>();
 
   const [myProfile, setMyProfile] = React.useState(true);
-
-  const [userRole, setUserRole] = React.useState("professor");
+  const [userRole, setUserRole] = React.useState("aluno");
   const [userData, setUserData] = React.useState<User>();
 
   const handleClickCreate = () => {
@@ -38,9 +37,9 @@ export const UserPage: React.FC<RouterProps> = (props) => {
 
   React.useEffect(() => {
     async function fetchUser() {
-      let response = await request("user/" + userid);
-      console.log(response);
+      let response: User = await request("user/" + userid);
       setUserData(response);
+      setUserRole(response.role);
     }
     fetchUser();
   }, [setUserData, userid]);
