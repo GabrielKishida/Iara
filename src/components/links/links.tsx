@@ -1,14 +1,19 @@
 import { Body } from "../typography";
 import { StyledNav, StyledLink, StyledItem } from "./links.style";
 import React from "react";
+
 import { Link } from "react-router-dom";
 
 export const Links: React.FC = (props) => {
+  const getUserId = () => {
+    return localStorage.getItem("userId");
+  };
+
   return (
     <StyledNav fill>
       <StyledItem>
         <StyledLink>
-          <Link to="/user" style={{ textDecoration: 'none' }}>
+          <Link to={"/user/" + getUserId()} style={{ textDecoration: "none" }}>
             <Body white>Usuário</Body>
           </Link>
         </StyledLink>
@@ -16,7 +21,7 @@ export const Links: React.FC = (props) => {
 
       <StyledItem>
         <StyledLink>
-          <Link to="/search" style={{ textDecoration: 'none' }}>
+          <Link to="/search" style={{ textDecoration: "none" }}>
             <Body white>Pesquisar Cursos</Body>
           </Link>
         </StyledLink>

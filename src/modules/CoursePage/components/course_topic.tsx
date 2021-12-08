@@ -5,7 +5,7 @@ export const TopicsContainer = styled.div`
   display: flex;
   background-color: ${COLORS.white};
   border-radius: ${SPACING.borderRadius}px;
-  min-width: 600px;
+  min-width: 900px;
 `;
 
 export const MockCircle = styled.div`

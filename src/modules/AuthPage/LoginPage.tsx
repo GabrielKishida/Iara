@@ -25,6 +25,8 @@ export const LoginPage: React.FC<RouterProps> = (props) => {
       };
       postRequest("login", loginData).then((userData: UserValidation[]) => {
         if (!!userData[0]) {
+          localStorage.setItem("userId", userData[0].user.id_user);
+          localStorage.setItem("role", userData[0].user.role);
           props.history.push("user/" + userData[0].user.id_user);
         } else {
           setShowModal(true);

@@ -7,26 +7,40 @@ import { RouterProps, useParams } from "react-router-dom";
 import { MockCircle, TopicsContainer } from "./components/course_topic";
 import { MockSmallCircle } from "../../components/card/card.style";
 import { PrimaryButton, DeleteButton } from "../../components/button";
+import { CourseInfo } from "../../models/course";
+import { request } from "../../services/RequestService";
 import { Link } from "react-router-dom";
 
 export const EditCoursePage: React.FC<RouterProps> = (props) => {
   const { courseid } = useParams<{ courseid: string }>();
+  const [data, setData] = React.useState<CourseInfo>();
+
+  React.useEffect(() => {
+    async function fetchData() {
+      const response = await request(
+        "course/getCompleteCourseInfo/courseId=" + courseid
+      );
+      setData(response);
+    }
+    fetchData();
+  }, [setData, courseid]);
 
   const handleDeleteClass = () => {
     alert("deletar aula");
   };
 
   const handleAddClass = () => {
-    props.history.push("/create-class/" + courseid);
+    props.history.push("/create-class/" + data?.classes?.length.toString());
   };
+
   return (
     <Grid>
       <Row>
         <WhiteBox>
           <Row justifyContent="space-between" alignItems="center">
             <Col>
-              <H3>{MOCK_CLASS.title + " " + courseid}</H3>
-              <Body>{MOCK_CLASS.description}</Body>
+              <H3>{data?.courseInfo.name}</H3>
+              <Body>{data?.courseInfo.description}</Body>
             </Col>
             <HSeparator huge />
             <MockCircle />
@@ -41,20 +55,29 @@ export const EditCoursePage: React.FC<RouterProps> = (props) => {
               <VBox>
                 <H3>Aulas</H3>
                 <VSeparator />
-                {MOCK_CLASS.topics.map((topic, index) => (
+                {data?.classes?.map((topic, index) => (
                   <>
-                    <Row>
+                    <Row justifyContent="flex-start">
                       <Col>
                         <MockSmallCircle />
                       </Col>
                       <HSeparator />
-                      <Link to={"/class/" + courseid + "/" + index.toString()}>
+                      <Link
+                        to={
+                          "/class/" +
+                          courseid +
+                          "/" +
+                          topic.id_class +
+                          "&" +
+                          localStorage.getItem("userId")
+                        }
+                      >
                         <Col>
                           <Row justifyContent="flex-start">
                             <H4>{topic.name}</H4>
                           </Row>
                           <Row justifyContent="flex-start">
-                            <Body>{topic.description}</Body>
+                            <Body>Dificuldade: {topic.difficulty}</Body>
                           </Row>
                         </Col>
                       </Link>
@@ -80,22 +103,4 @@ export const EditCoursePage: React.FC<RouterProps> = (props) => {
       </VBox>
     </Grid>
   );
-};
-
-const MOCK_CLASS = {
-  title: "Aula Genérica",
-  progress: 34,
-  description:
-    "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  topics: [
-    {
-      name: "Introdução",
-      description: "Descrição do tópico de introdução, e o que ele contém.",
-    },
-    {
-      name: "Desenvolvimento",
-      description:
-        "Descrição do tópico de desenvolvimento, e o que ele contém.",
-    },
-  ],
 };

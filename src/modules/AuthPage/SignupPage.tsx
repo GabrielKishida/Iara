@@ -12,7 +12,7 @@ import { Footer } from "../../components/footer";
 
 export const SignupPage: React.FC<RouterProps> = (props) => {
   const handleSubmitSignup = React.useCallback(
-    (e: any) => {
+    async (e: any) => {
       e.preventDefault();
       const signupData: SignUp = {
         username: e.target.elements.username.value,
@@ -22,9 +22,15 @@ export const SignupPage: React.FC<RouterProps> = (props) => {
         bio: e.target.elements.bio.value,
         logo: "",
       };
-      postRequest("user/signup", signupData).then(() => {
-        props.history.push("/");
-      });
+      postRequest("user/signup", signupData)
+        .then((response) => {
+          localStorage.setItem("userId", response.id_user);
+          localStorage.setItem("role", response.role);
+          props.history.push("user/" + response.id_user);
+        })
+        .catch((error) => {
+          alert("Algo deu errado com o cadastro. Por favor tente novamente.");
+        });
     },
     [postRequest]
   );
@@ -62,7 +68,8 @@ export const SignupPage: React.FC<RouterProps> = (props) => {
                       label="Aluno"
                       name="role"
                       type="radio"
-                      id={`inline-radio-1`}
+                      id="aluno"
+                      value="Aluno"
                     />
                     <HSeparator />
                     <Form.Check
@@ -70,7 +77,8 @@ export const SignupPage: React.FC<RouterProps> = (props) => {
                       label="Professor"
                       name="role"
                       type="radio"
-                      id={`inline-radio-2`}
+                      id="professor"
+                      value="Professor"
                     />
                   </Row>
                 </Col>
