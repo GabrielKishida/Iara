@@ -15,7 +15,6 @@ import { WhiteBox } from "../../components/white_box/white_box";
 import { Link, RouterProps, useParams } from "react-router-dom";
 import { User } from "../../models/user";
 import { request } from "../../services/RequestService";
-import { Footer } from "../../components/footer";
 
 export const UserPage: React.FC<RouterProps> = (props) => {
   const { userid } = useParams<{ userid: string }>();
@@ -168,9 +167,6 @@ export const UserPage: React.FC<RouterProps> = (props) => {
             ))}
           </Row>
         </VBox>
-      </Row>
-      <Row>
-        <Footer />
       </Row>
     </Grid>
   );

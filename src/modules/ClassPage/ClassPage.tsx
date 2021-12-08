@@ -1,3 +1,4 @@
+import ClassPageMock from "./ClassPageMock";
 import {
   Course,
   Chapter,
@@ -15,8 +16,6 @@ import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
 import { RouterProps, useParams } from "react-router-dom";
 import React from "react";
-import { Footer } from "../../components/footer";
-import { Row } from "../../components/theme/grid";
 
 export const ClassPage: React.FC<RouterProps> = (props) => {
 
@@ -164,9 +163,6 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
             Voltar para o curso
         </PrimaryButton>
       </div>
-      <Row style={{width:"100%"}}>
-        <Footer />
-      </Row>
     </CourseGrid>
   );
 };

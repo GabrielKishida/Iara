@@ -8,7 +8,6 @@ import { H3, VSeparator, Body, HSeparator } from "../../components";
 import { PrimaryButton } from "../../components/button";
 import { SignUp } from "../../models/signup";
 import { postRequest } from "../../services/RequestService";
-import { Footer } from "../../components/footer";
 
 export const SignupPage: React.FC<RouterProps> = (props) => {
   const handleSubmitSignup = React.useCallback(
@@ -91,9 +90,6 @@ export const SignupPage: React.FC<RouterProps> = (props) => {
             </Form>
           </VBox>
         </WhiteBox>
-      </Row>
-      <Row>
-        <Footer />
       </Row>
     </Grid>
   );

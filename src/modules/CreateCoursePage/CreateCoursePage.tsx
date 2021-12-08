@@ -3,8 +3,7 @@ import { CourseGrid, Card, PageTitle } from "./CreateCoursePage.style";
 import { H2, H4 } from "../../components/typography";
 import Form from "react-bootstrap/Form";
 import { PrimaryButton, VSeparator } from "../../components";
-import { Footer } from "../../components/footer";
-import { Row } from "../../components/theme/grid";
+
 import { RouterProps } from "react-router-dom";
 
 export const CreateCoursePage: React.FC<RouterProps> = (props) => {
@@ -72,9 +71,6 @@ export const CreateCoursePage: React.FC<RouterProps> = (props) => {
       <VSeparator />
       <PrimaryButton onClick={handleClickCreate}>Submeter</PrimaryButton>
       <VSeparator />
-      <Row>
-        <Footer />
-      </Row>
     </CourseGrid>
   );
 };

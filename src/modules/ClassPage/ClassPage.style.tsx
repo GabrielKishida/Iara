@@ -18,6 +18,4 @@ export const ChapterCheckbox = styled.input`
 export const CourseGrid = styled(Grid)`
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction:column;
 `
