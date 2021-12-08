@@ -9,25 +9,21 @@ import { MockCircle, TopicsContainer } from "./components/course_topic";
 import { MockSmallCircle } from "../../components/card/card.style";
 import { PrimaryButton } from "../../components/button";
 import { Link } from "react-router-dom";
-import { CourseInfo } from "../../models/course";
+import { Course } from "../../models/course";
 import { request } from "../../services/RequestService";
-import { SimpleClass } from "../../models/Class";
-import { Footer } from "../../components/footer";
 
 export const CoursePage: React.FC<RouterProps> = (props) => {
-  const [data, setData] = React.useState<CourseInfo>();
+  const [data, setData] = React.useState<Course>();
   const { courseid } = useParams<{ courseid: string }>();
 
   React.useEffect(() => {
     async function fetchData() {
-      const response = await request(
-        "course/getCompleteCourseInfo/courseId=" + courseid
-      );
-      console.log(response);
-      setData(response);
+      setData(await request("course/" + courseid));
     }
     fetchData();
   }, [setData, courseid]);
+
+  //TODO: Add request to get classes from course
 
   return (
     <Grid>
@@ -35,12 +31,8 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
         <WhiteBox>
           <Row justifyContent="space-between" alignItems="center">
             <Col>
-              <H3>{data?.courseInfo.name}</H3>
-              <Body>{data?.courseInfo.description}</Body>
-              <VSeparator half />
-
-              <Body>Duração: {data?.courseInfo.duration}</Body>
-              <Body>Dificuldade: {data?.courseInfo.difficulty}</Body>
+              <H3>{data?.name}</H3>
+              <Body>{data?.description}</Body>
             </Col>
             <HSeparator huge />
             <MockCircle />
@@ -68,36 +60,31 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
               <VBox>
                 <H3>Tópicos</H3>
                 <VSeparator />
-                {data?.classes?.map((topic: SimpleClass, index: number) => (
-                  <Col>
-                    <Link to={"/class/" + courseid + "/" + index.toString()} style={{ textDecoration: 'none' }}>
-                      <Row alignItems="flex-start" justifyContent="flex-start">
-                        <Col>
-                          <MockSmallCircle />
-                        </Col>
-                        <HSeparator />
+                {MOCK_CLASS.topics.map((topic, index) => (
+                  <Link to={"/class/" + courseid + "/" + index.toString()}>
+                    <Row>
+                      <Col>
+                        <MockSmallCircle />
+                      </Col>
+                      <HSeparator />
 
-                        <Col>
-                          <Row justifyContent="flex-start">
-                            <H4>{topic.name}</H4>
-                          </Row>
-                          <Row justifyContent="flex-start">
-                            <Body>Dificuldade: {topic.difficulty}</Body>
-                          </Row>
-                        </Col>
-                      </Row>
-                      <VSeparator />
-                    </Link>
-                  </Col>
+                      <Col>
+                        <Row justifyContent="flex-start">
+                          <H4>{topic.name}</H4>
+                        </Row>
+                        <Row justifyContent="flex-start">
+                          <Body>{topic.description}</Body>
+                        </Row>
+                      </Col>
+                    </Row>
+                    <VSeparator />
+                  </Link>
                 ))}
               </VBox>
             </TopicsContainer>
           </Col>
         </Row>
       </VBox>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };

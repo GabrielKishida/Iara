@@ -19,7 +19,6 @@ import { COLORS } from "../../components/theme";
 import { Link } from "react-router-dom";
 import { postRequest } from "../../services/RequestService";
 import { Course } from "../../models/course";
-import { Footer } from "../../components/footer";
 
 export const SearchPage: React.FC = () => {
   interface SearchObject {
@@ -283,11 +282,11 @@ export const SearchPage: React.FC = () => {
       {results.map((resultData) => (
         <React.Fragment key={resultData.id_course}>
           <Row id={String(resultData.id_course)}>
-            <Col style={{width: '100%'}}>
-              <RoundedWhiteBox style={{width: '30%'}}>
+            <Col>
+              <RoundedWhiteBox>
                 <Row>
                   <Col>
-                    <Link to={"/course/" + resultData.id_course} style={{ textDecoration: 'none' }}>
+                    <Link to={"/course/" + resultData.id_course}>
                       <H4> {resultData.name} </H4>
                     </Link>
                     <Body>
@@ -309,9 +308,6 @@ export const SearchPage: React.FC = () => {
           <VSeparator />
         </React.Fragment>
       ))}
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };
