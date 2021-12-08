@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { CourseInfo } from "../../models/course";
 import { request } from "../../services/RequestService";
 import { SimpleClass } from "../../models/Class";
+import { Footer } from "../../components/footer";
 
 export const CoursePage: React.FC<RouterProps> = (props) => {
   const [data, setData] = React.useState<CourseInfo>();
@@ -94,6 +95,9 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
           </Col>
         </Row>
       </VBox>
+      <Row>
+        <Footer />
+      </Row>
     </Grid>
   );
 };
