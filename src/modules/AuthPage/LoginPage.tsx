@@ -12,6 +12,7 @@ import { Login } from "../../models/login";
 import { postRequest } from "../../services/RequestService";
 import { UserValidation } from "../../models/user";
 import { AnswerButton } from "../../components/QuestionCard/QuestionCard.style";
+import { Footer } from "../../components/footer";
 
 export const LoginPage: React.FC<RouterProps> = (props) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -74,6 +75,9 @@ export const LoginPage: React.FC<RouterProps> = (props) => {
           </AnswerButton>
         </Modal.Footer>
       </Modal>
+      <Row>
+        <Footer />
+      </Row>
     </Grid>
   );
 };
