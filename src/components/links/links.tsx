@@ -16,7 +16,7 @@ export const Links: React.FC = (props) => {
 
       <StyledItem>
         <StyledLink>
-          <Link to="/search" style={{ textDecoration: 'none' }}>
+          <Link to="/search">
             <Body white>Pesquisar Cursos</Body>
           </Link>
         </StyledLink>

@@ -70,7 +70,7 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
                 <VSeparator />
                 {data?.classes?.map((topic: SimpleClass, index: number) => (
                   <Col>
-                    <Link to={"/class/" + courseid + "/" + index.toString()} style={{ textDecoration: 'none' }}>
+                    <Link to={"/class/" + courseid + "/" + index.toString()}>
                       <Row alignItems="flex-start" justifyContent="flex-start">
                         <Col>
                           <MockSmallCircle />
