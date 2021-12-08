@@ -283,11 +283,11 @@ export const SearchPage: React.FC = () => {
       {results.map((resultData) => (
         <React.Fragment key={resultData.id_course}>
           <Row id={String(resultData.id_course)}>
-            <Col>
-              <RoundedWhiteBox>
+            <Col style={{width: '100%'}}>
+              <RoundedWhiteBox style={{width: '30%'}}>
                 <Row>
                   <Col>
-                    <Link to={"/course/" + resultData.id_course}>
+                    <Link to={"/course/" + resultData.id_course} style={{ textDecoration: 'none' }}>
                       <H4> {resultData.name} </H4>
                     </Link>
                     <Body>

@@ -8,7 +8,7 @@ export const Links: React.FC = (props) => {
     <StyledNav fill>
       <StyledItem>
         <StyledLink>
-          <Link to="/user">
+          <Link to="/user" style={{ textDecoration: 'none' }}>
             <Body white>Usuário</Body>
           </Link>
         </StyledLink>
@@ -16,7 +16,7 @@ export const Links: React.FC = (props) => {
 
       <StyledItem>
         <StyledLink>
-          <Link to="/search">
+          <Link to="/search" style={{ textDecoration: 'none' }}>
             <Body white>Pesquisar Cursos</Body>
           </Link>
         </StyledLink>
