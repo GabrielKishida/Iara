@@ -13,6 +13,7 @@ import { PrimaryButton, VSeparator } from "../../components";
 import { VBox } from "../../components/theme/grid";
 import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
+import { Footer } from "../../components/footer";
 
 export const CreateClassPage: React.FC = () => {
   const [textSegments, setTextSegments] = React.useState<TextBlock[]>([]);
@@ -201,6 +202,9 @@ export const CreateClassPage: React.FC = () => {
       <VSeparator />
       <PrimaryButton>Submeter</PrimaryButton>
       <VSeparator />
+      <Row>
+        <Footer />
+      </Row>
     </CourseGrid>
   );
 };
