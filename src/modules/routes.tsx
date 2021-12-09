@@ -19,7 +19,11 @@ const Routes: React.FC = (props) => {
       {props.children}
       <Route path="/" exact component={MainPage} />
       <Route path="/class/:courseid/:classid" exact component={ClassPage} />
-      <Route path="/create-class/:courseid" exact component={CreateClassPage} />
+      <Route
+        path="/create-class/:courseid/:classid"
+        exact
+        component={CreateClassPage}
+      />
       <Route path="/create-course" exact component={CreateCoursePage} />
       <Route path="/edit-course/:courseid" exact component={EditCoursePage} />
       <Route path="/user/:userid" exact component={UserPage} />
