@@ -15,7 +15,7 @@ import { WhiteBox } from "../../components/white_box/white_box";
 import { Link, RouterProps, useParams } from "react-router-dom";
 import { User } from "../../models/user";
 import { request } from "../../services/RequestService";
-import { Footer } from "../../components/footer";
+import { Course } from "../../models/course";
 
 export const UserPage: React.FC<RouterProps> = (props) => {
   const { userid } = useParams<{ userid: string }>();
@@ -23,6 +23,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
   const [myProfile, setMyProfile] = React.useState(true);
   const [userRole, setUserRole] = React.useState("aluno");
   const [userData, setUserData] = React.useState<User>();
+  const [userCourses, setUserCourses] = React.useState<Course[]>();
 
   const handleClickCreate = () => {
     props.history.push("/create-course/");
@@ -44,6 +45,14 @@ export const UserPage: React.FC<RouterProps> = (props) => {
     }
     fetchUser();
   }, [setUserData, userid]);
+
+  React.useEffect(() => {
+    async function fetchUserCourses() {
+      let response = await request("course/getUserCourses/userId=" + userid);
+      setUserCourses(response?.splice(0, 3));
+    }
+    fetchUserCourses();
+  }, [setUserCourses]);
 
   return (
     <Grid>
@@ -99,74 +108,58 @@ export const UserPage: React.FC<RouterProps> = (props) => {
               </Row>
               <VSeparator />
 
-              <Row justifyContent="space-between" alignItems="flex-end">
-                <H3>Seus cursos</H3>
-                <Link to="/courses/my-courses">
-                  <LinkText>Ver mais</LinkText>
-                </Link>
-              </Row>
+              {false && (
+                <>
+                  <Row justifyContent="space-between" alignItems="flex-end">
+                    <H3>Seus cursos</H3>
+                    <Link to="/courses/my-courses">
+                      <LinkText>Ver mais</LinkText>
+                    </Link>
+                  </Row>
 
-              <Row justifyContent="flex-start">
-                <HSeparator />
-                {MOCK_CLASSES.map((classData) => (
-                  <>
-                    <ClassCard
-                      classType="teacher"
-                      name={classData.name}
-                      description={classData.description}
-                      onClick={() => handleClickEdit(classData.id)}
-                    />
+                  <Row justifyContent="flex-start">
                     <HSeparator />
-                  </>
-                ))}
-              </Row>
-              <VSeparator />
+                    {MOCK_CLASSES.map((classData) => (
+                      <>
+                        <ClassCard
+                          classType="teacher"
+                          name={classData.name}
+                          description={classData.description}
+                          onClick={() => handleClickEdit(classData.id)}
+                        />
+                        <HSeparator />
+                      </>
+                    ))}
+                  </Row>
+                  <VSeparator />
+                </>
+              )}
             </>
           )}
 
           <Row justifyContent="space-between" alignItems="flex-end">
             <H3>Cursos em progresso</H3>
-            <Link to="/courses/in-progress">
+            <Link to={"/courses/in-progress/" + userid}>
               <LinkText>Ver mais</LinkText>
             </Link>
           </Row>
 
           <Row justifyContent="flex-start">
-            {MOCK_CLASSES.map((classData) => (
+            {userCourses?.map((classData) => (
               <>
                 <ClassCard
-                  classType="inProgress"
+                  classType="teacher"
                   name={classData.name}
-                  progress={classData.progress}
                   description={classData.description}
-                  onClick={() => handleClickCourse(classData.id)}
+                  onClick={() =>
+                    handleClickCourse(classData.id_course.toString())
+                  }
                 />
                 <HSeparator />
               </>
             ))}
           </Row>
           <VSeparator />
-
-          <Row justifyContent="space-between" alignItems="flex-end">
-            <H3>Cursos finalizados</H3>
-            <Link to="/courses/finished">
-              <LinkText>Ver mais</LinkText>
-            </Link>
-          </Row>
-          <Row justifyContent="flex-start">
-            {MOCK_CLASSES.map((classData) => (
-              <>
-                <ClassCard
-                  classType="finished"
-                  name={classData.name}
-                  progress={classData.progress}
-                  description={classData.description}
-                  onClick={() => handleClickCourse(classData.id)}
-                />
-                <HSeparator />
-              </>
-            ))}
-          </Row>
         </VBox>
       </Row>
     </Grid>

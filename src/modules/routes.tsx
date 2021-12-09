@@ -31,7 +31,7 @@ const Routes: React.FC = (props) => {
 
       <Route path="/course/:courseid" component={CoursePage} />
       <Route
-        path="/courses/in-progress"
+        path="/courses/in-progress/:userid"
         exact
         component={InProgressClassesPage}
       />
