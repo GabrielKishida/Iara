@@ -17,7 +17,6 @@ export const CreateCoursePage: React.FC<RouterProps> = (props) => {
       description: e.target.elements.description.value,
       icon: "",
     };
-    console.log(courseData);
     postRequest("course/create", courseData).then((response) => {
       props.history.push("/edit-course/" + response.id_course);
     });
