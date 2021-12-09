@@ -52,9 +52,6 @@ export const FinishedClassesPage: React.FC = () => {
           <VSeparator />
         </VBox>
       </Row>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };

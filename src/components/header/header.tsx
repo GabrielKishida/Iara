@@ -1,6 +1,5 @@
-import { H3, H4, H5 } from "../typography";
 import { HeaderLink, HeaderTitleLink } from "../button";
-import { VSeparator, HSeparator } from "../theme";
+import { HSeparator } from "../theme";
 import {
   HeaderContainer,
   LogoCircle,
@@ -9,50 +8,51 @@ import {
 } from "./header.style";
 import { Link } from "react-router-dom";
 import React from "react";
-import { useState } from "react";
+import { LoginContext } from "../../services/LoginService";
 
-interface HeaderProps {
-  role?: string;
-  isLogged?: boolean;
-}
-
-export const Header: React.FC<HeaderProps> = (props) => {
-  const [isLogged, setLogged] = useState<boolean>(false);
-
+export const Header: React.FC = (props) => {
   return (
-    <HeaderContainer>
-      <LogoCircle />
-      <HSeparator />
-      <HeaderTextContainer align="left">
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <HeaderTitleLink>Iara</HeaderTitleLink>
-        </Link>
-      </HeaderTextContainer>
-      <HSeparator />
-      <HSeparator />
+    <LoginContext.Consumer>
+      {({ userId, handleLogout }) => (
+        <HeaderContainer>
+          <LogoCircle />
+          <HSeparator />
+          <HeaderTextContainer align="left">
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <HeaderTitleLink>Iara</HeaderTitleLink>
+            </Link>
+          </HeaderTextContainer>
+          <HSeparator />
+          <HSeparator />
 
-      {props.isLogged ? (
-        <HeaderTextContainer>
-          <Link to="/user" style={{ textDecoration: 'none' }}>
-            <HeaderLink bold>Perfil</HeaderLink>
-          </Link>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <HeaderLink bold>Logout</HeaderLink>
-          </Link>
-        </HeaderTextContainer>
-      ) : (
-        <HeaderTextContainer>
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-            <HeaderLink>Login</HeaderLink>
-          </Link>
-          <Link to="/signup" style={{ textDecoration: 'none' }}>
-            <HeaderLink bold>Cadastro</HeaderLink>
-          </Link>
-        </HeaderTextContainer>
+          {!!userId ? (
+            <HeaderTextContainer>
+              <Link to={"/user/" + userId} style={{ textDecoration: "none" }}>
+                <HeaderLink bold>Perfil</HeaderLink>
+              </Link>
+              <Link
+                to="/"
+                style={{ textDecoration: "none" }}
+                onClick={handleLogout}
+              >
+                <HeaderLink bold>Logout</HeaderLink>
+              </Link>
+            </HeaderTextContainer>
+          ) : (
+            <HeaderTextContainer>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <HeaderLink>Login</HeaderLink>
+              </Link>
+              <Link to="/signup" style={{ textDecoration: "none" }}>
+                <HeaderLink bold>Cadastro</HeaderLink>
+              </Link>
+            </HeaderTextContainer>
+          )}
+
+          <HSeparator />
+          <PerfilCircle />
+        </HeaderContainer>
       )}
-
-      <HSeparator />
-      <PerfilCircle />
-    </HeaderContainer>
+    </LoginContext.Consumer>
   );
 };

@@ -202,9 +202,6 @@ export const CreateClassPage: React.FC = () => {
       <VSeparator />
       <PrimaryButton>Submeter</PrimaryButton>
       <VSeparator />
-      <Row>
-        <Footer />
-      </Row>
     </CourseGrid>
   );
 };
