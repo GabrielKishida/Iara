@@ -19,7 +19,6 @@ import { COLORS } from "../../components/theme";
 import { Link } from "react-router-dom";
 import { postRequest } from "../../services/RequestService";
 import { Course } from "../../models/course";
-import { Footer } from "../../components/footer";
 
 export const SearchPage: React.FC = () => {
   interface SearchObject {
