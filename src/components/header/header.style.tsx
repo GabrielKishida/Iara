@@ -14,11 +14,19 @@ export const HeaderContainer = styled.div`
   z-index: 11;
 `;
 
+
+interface LogoCircleProps {
+  url: string;
+}
+
 export const LogoCircle = styled.div`
   background-color: ${COLORS.areia};
   width: ${SPACING.medium * 2}px;
   height: ${SPACING.medium * 2}px;
   border-radius: ${SPACING.medium}px;
+  background-image: url(${(props: LogoCircleProps) => props.url});
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export const PerfilCircle = styled.div`
