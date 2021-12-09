@@ -7,7 +7,6 @@ import {
   VSeparator,
   HSeparator,
 } from "../../components";
-import { LinkButton } from "../../components/button";
 import { ClassCard, CreateClassCard } from "../../components/card/class_card";
 import { Col, Grid, Row, VBox } from "../../components/theme/grid";
 import { WhiteBox } from "../../components/white_box/white_box";
@@ -74,24 +73,6 @@ export const UserPage: React.FC<RouterProps> = (props) => {
                 />
               )}
             </Col>
-            <HSeparator huge />
-            <HSeparator huge />
-            <HSeparator huge />
-            <HSeparator huge />
-            {myProfile && (
-              <Col size={3}>
-                <LinkButton>Editar Perfil</LinkButton>
-                <VSeparator half />
-                <LinkButton delete>Apagar Perfil</LinkButton>
-                <VSeparator half />
-                <LinkButton>
-                  {userRole === "professor"
-                    ? "Deixar de ser professor"
-                    : "Quero ser um professor"}
-                </LinkButton>
-                <VSeparator half />
-              </Col>
-            )}
           </Row>
         </WhiteBox>
       </Row>
@@ -138,7 +119,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
           )}
 
           <Row justifyContent="space-between" alignItems="flex-end">
-            <H3>Cursos em progresso</H3>
+            <H3>Minhas Aulas</H3>
             <Link to={"/courses/in-progress/" + userid}>
               <LinkText>Ver mais</LinkText>
             </Link>

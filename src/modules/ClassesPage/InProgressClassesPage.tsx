@@ -38,7 +38,7 @@ export const InProgressClassesPage: React.FC<RouterProps> = (props) => {
       <VSeparator />
       <Row>
         <VBox>
-          <H2>Aulas em progresso</H2>
+          <H2>Minhas Aulas</H2>
           <VSeparator />
 
           {classesArray.map((classRow, index) => (
