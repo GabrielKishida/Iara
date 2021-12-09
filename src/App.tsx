@@ -9,7 +9,16 @@ import { Footer } from "./components/footer";
 import { LoginContext } from "./services/LoginService";
 
 export default function App() {
-  const [userId, setUserId] = React.useState("");
+  const getId = () => {
+    const id = localStorage.getItem("userId");
+    if (!!id) {
+      return id;
+    } else {
+      return "";
+    }
+  };
+
+  const [userId, setUserId] = React.useState<string>(getId());
 
   const handleLogin = (id: string, role: string) => {
     localStorage.setItem("userId", id);

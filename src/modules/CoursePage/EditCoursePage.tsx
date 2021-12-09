@@ -30,7 +30,9 @@ export const EditCoursePage: React.FC<RouterProps> = (props) => {
   };
 
   const handleAddClass = () => {
-    props.history.push("/create-class/" + data?.classes?.length.toString());
+    props.history.push(
+      "/create-class/" + courseid + "/" + data?.classes?.length.toString()
+    );
   };
 
   return (
@@ -82,12 +84,15 @@ export const EditCoursePage: React.FC<RouterProps> = (props) => {
                         </Col>
                       </Link>
                       <HSeparator />
-                      <Col>
-                        <VSeparator half />
-                        <DeleteButton onClick={handleDeleteClass}>
-                          Deletar
-                        </DeleteButton>
-                      </Col>
+
+                      {false && (
+                        <Col>
+                          <VSeparator half />
+                          <DeleteButton onClick={handleDeleteClass}>
+                            Deletar
+                          </DeleteButton>
+                        </Col>
+                      )}
                     </Row>
                     <VSeparator />
                   </>

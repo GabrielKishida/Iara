@@ -119,7 +119,7 @@ export const UserPage: React.FC<RouterProps> = (props) => {
           )}
 
           <Row justifyContent="space-between" alignItems="flex-end">
-            <H3>Cursos em progresso</H3>
+            <H3>Minhas Aulas</H3>
             <Link to={"/courses/in-progress/" + userid}>
               <LinkText>Ver mais</LinkText>
             </Link>
