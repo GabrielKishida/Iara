@@ -105,9 +105,6 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
           </Col>
         </Row>
       </VBox>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };

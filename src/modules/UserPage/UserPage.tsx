@@ -169,9 +169,6 @@ export const UserPage: React.FC<RouterProps> = (props) => {
           </Row>
         </VBox>
       </Row>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };

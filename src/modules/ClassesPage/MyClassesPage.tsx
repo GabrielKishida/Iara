@@ -51,9 +51,6 @@ export const MyClassesPage: React.FC = () => {
           <VSeparator />
         </VBox>
       </Row>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };

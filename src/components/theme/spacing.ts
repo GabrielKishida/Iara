@@ -18,7 +18,7 @@ interface SeparatorProps {
 
 export const VSeparator = styled.div`
   height: ${(props: SeparatorProps) =>
-    props.half ? SPACING.small : SPACING.large}px;
+    props.half ? SPACING.small : props.huge ? SPACING.xHuge : SPACING.large}px;
 `;
 
 export const BigHSeparator = styled.div`

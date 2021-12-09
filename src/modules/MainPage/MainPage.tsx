@@ -12,9 +12,6 @@ export const MainPage: React.FC = () => {
       <Row>
         <CursosPopulares />
       </Row>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };

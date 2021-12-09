@@ -72,9 +72,6 @@ export const CreateCoursePage: React.FC<RouterProps> = (props) => {
       <VSeparator />
       <PrimaryButton onClick={handleClickCreate}>Submeter</PrimaryButton>
       <VSeparator />
-      <Row>
-        <Footer />
-      </Row>
     </CourseGrid>
   );
 };
