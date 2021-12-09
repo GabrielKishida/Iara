@@ -100,9 +100,7 @@ export const SignupPage: React.FC<RouterProps> = (props) => {
           </VBox>
         </WhiteBox>
       </Row>
-      <Row>
-        <Footer />
-      </Row>
+      <VSeparator huge />
     </Grid>
   );
 };

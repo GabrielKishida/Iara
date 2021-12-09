@@ -52,9 +52,6 @@ export const InProgressClassesPage: React.FC = () => {
           <VSeparator />
         </VBox>
       </Row>
-      <Row>
-        <Footer />
-      </Row>
     </Grid>
   );
 };
