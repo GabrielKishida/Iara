@@ -9,13 +9,14 @@ import {
 import { Link } from "react-router-dom";
 import React from "react";
 import { LoginContext } from "../../services/LoginService";
+import * as url_mermaid from "../assets/images/mermaid_logo.png";
 
 export const Header: React.FC = (props) => {
   return (
     <LoginContext.Consumer>
       {({ userId, handleLogout }) => (
         <HeaderContainer>
-          <LogoCircle />
+          <LogoCircle url={url_mermaid.default}/>
           <HSeparator />
           <HeaderTextContainer align="left">
             <Link to="/" style={{ textDecoration: "none" }}>
@@ -24,6 +25,7 @@ export const Header: React.FC = (props) => {
           </HeaderTextContainer>
           <HSeparator />
           <HSeparator />
+
 
           {!!userId ? (
             <HeaderTextContainer>

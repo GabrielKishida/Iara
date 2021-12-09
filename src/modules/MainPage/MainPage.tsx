@@ -6,12 +6,12 @@ import { Footer } from "../../components/footer";
 export const MainPage: React.FC = () => {
   return (
     <Grid>
-      <Row>
+      {/* <Row>
         <Jumbotron />
-      </Row>
-      <Row>
+      </Row> */}
+      {/* <Row>
         <CursosPopulares />
-      </Row>
+      </Row> */}
     </Grid>
   );
 };

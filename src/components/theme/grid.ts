@@ -3,6 +3,7 @@ import { COLORS, SPACING } from ".";
 
 export const Grid = styled.div`
   background-color: ${COLORS.xLightGray};
+  min-height : 800px;
 `;
 
 interface RowProps {
