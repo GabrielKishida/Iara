@@ -9,8 +9,11 @@ import { PrimaryButton } from "../../components/button";
 import { SignUp } from "../../models/signup";
 import { postRequest } from "../../services/RequestService";
 import { Footer } from "../../components/footer";
+import { LoginContext } from "../../services/LoginService";
 
 export const SignupPage: React.FC<RouterProps> = (props) => {
+  const { handleLogin } = React.useContext(LoginContext);
+
   const handleSubmitSignup = React.useCallback(
     async (e: any) => {
       e.preventDefault();
@@ -23,12 +26,11 @@ export const SignupPage: React.FC<RouterProps> = (props) => {
         logo: "",
       };
       postRequest("user/signup", signupData)
-        .then((response) => {
-          localStorage.setItem("userId", response.id_user);
-          localStorage.setItem("role", response.role);
+        .then((response: any) => {
+          handleLogin(response.id_user, response.role);
           props.history.push("user/" + response.id_user);
         })
-        .catch((error) => {
+        .catch(() => {
           alert("Algo deu errado com o cadastro. Por favor tente novamente.");
         });
     },

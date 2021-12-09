@@ -3,17 +3,24 @@ import { StyledNav, StyledLink, StyledItem } from "./links.style";
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { LoginContext } from "../../services/LoginService";
 
 export const Links: React.FC = (props) => {
-  const getUserId = () => {
-    return localStorage.getItem("userId");
-  };
+  const { userId } = React.useContext(LoginContext);
+
+  const handleClickUser = React.useCallback(() => {
+    if (!!userId) {
+      return "/user/" + userId;
+    } else {
+      return "/login";
+    }
+  }, [userId]);
 
   return (
     <StyledNav fill>
       <StyledItem>
         <StyledLink>
-          <Link to={"/user/" + getUserId()} style={{ textDecoration: "none" }}>
+          <Link to={handleClickUser()} style={{ textDecoration: "none" }}>
             <Body white>Usuário</Body>
           </Link>
         </StyledLink>

@@ -10,11 +10,14 @@ import { PrimaryButton } from "../../components/button";
 import { Link } from "react-router-dom";
 import { Login } from "../../models/login";
 import { postRequest } from "../../services/RequestService";
+import { LoginContext } from "../../services/LoginService";
 import { UserValidation } from "../../models/user";
 import { AnswerButton } from "../../components/QuestionCard/QuestionCard.style";
 
 export const LoginPage: React.FC<RouterProps> = (props) => {
+  const { handleLogin } = React.useContext(LoginContext);
   const [showModal, setShowModal] = React.useState(false);
+
   const handleSubmitLogin = React.useCallback(
     (e: any) => {
       e.preventDefault();
@@ -24,8 +27,7 @@ export const LoginPage: React.FC<RouterProps> = (props) => {
       };
       postRequest("login", loginData).then((userData: UserValidation[]) => {
         if (!!userData[0]) {
-          localStorage.setItem("userId", userData[0].user.id_user);
-          localStorage.setItem("role", userData[0].user.role);
+          handleLogin(userData[0].user.id_user, userData[0].user.role);
           props.history.push("user/" + userData[0].user.id_user);
         } else {
           setShowModal(true);
