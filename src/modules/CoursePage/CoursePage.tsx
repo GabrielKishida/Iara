@@ -22,7 +22,6 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
       const response = await request(
         "course/getCompleteCourseInfo/courseId=" + courseid
       );
-      console.log(response);
       setData(response);
     }
     fetchData();
