@@ -2,15 +2,18 @@ import React from "react";
 import { H2, VSeparator, HSeparator } from "../../components";
 import { ClassCard } from "../../components/card/class_card";
 import { Grid, Row, VBox } from "../../components/theme/grid";
-import { Footer } from "../../components/footer";
+import { request } from "../../services/RequestService";
+import { RouterProps, useParams } from "react-router";
+import { Course } from "../../models/course";
 
 const ROW_SIZE = 3;
 
-export const InProgressClassesPage: React.FC = () => {
-  const [classesArray, setClassesArray] = React.useState<Class[][]>([]);
+export const InProgressClassesPage: React.FC<RouterProps> = (props) => {
+  const [classesArray, setClassesArray] = React.useState<Course[][]>([]);
+  const { userid } = useParams<{ userid: string }>();
 
-  const prepareArray = React.useCallback((classes: Class[]) => {
-    const preparedArray: Class[][] = [];
+  const prepareArray = React.useCallback((classes: Course[]) => {
+    const preparedArray: Course[][] = [];
     const classesArray = classes;
     while (classesArray.length > 0) {
       preparedArray.push(classesArray.splice(0, ROW_SIZE));
@@ -18,9 +21,17 @@ export const InProgressClassesPage: React.FC = () => {
     return preparedArray;
   }, []);
 
+  const handleClickCourse = (id: string) => {
+    props.history.push("/course/" + id);
+  };
+
   React.useEffect(() => {
-    setClassesArray(prepareArray(MOCK_CLASSES));
-  }, [setClassesArray, prepareArray]);
+    async function fetchUserCourses() {
+      let response = await request("course/getUserCourses/userId=" + userid);
+      setClassesArray(prepareArray(response));
+    }
+    fetchUserCourses();
+  }, [setClassesArray, prepareArray, userid]);
 
   return (
     <Grid>
@@ -36,10 +47,12 @@ export const InProgressClassesPage: React.FC = () => {
                 {classRow.map((classData, index) => (
                   <React.Fragment key={index}>
                     <ClassCard
-                      classType="inProgress"
+                      classType="teacher"
                       name={classData.name}
-                      progress={classData.progress}
                       description={classData.description}
+                      onClick={() =>
+                        handleClickCourse(classData.id_course.toString())
+                      }
                     />
                     <HSeparator />
                   </React.Fragment>
@@ -55,60 +68,3 @@ export const InProgressClassesPage: React.FC = () => {
     </Grid>
   );
 };
-
-interface Class {
-  name: string;
-  progress: number;
-  description: string;
-}
-
-const MOCK_CLASSES: Class[] = [
-  {
-    name: "Aula I",
-    progress: 34,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula II",
-    progress: 74,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula III",
-    progress: 99,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula IV",
-    progress: 15,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula V",
-    progress: 5,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula VI",
-    progress: 13,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula VII",
-    progress: 34,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-  {
-    name: "Aula VIII",
-    progress: 74,
-    description:
-      "Descrição genérica de uma aula, como os conteúdos abordados e tudo mais que tem em uma aula.",
-  },
-];
