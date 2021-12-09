@@ -7,10 +7,6 @@ import { PrimaryButton } from "../button";
 import { VSeparator } from "..";
 import { Link } from "react-router-dom";
 
-/**export const Header: React.FC: = (props) => {
-  return <HeaderContainer>{props.children}</HeaderContainer>;
-};**/
-
 export const Jumbotron: React.FC = (props) => {
   return (
     <JumbotronContainer>

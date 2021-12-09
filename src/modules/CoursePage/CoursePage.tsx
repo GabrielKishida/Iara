@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import { CourseInfo } from "../../models/course";
 import { request } from "../../services/RequestService";
 import { SimpleClass } from "../../models/Class";
-import { Footer } from "../../components/footer";
 
 export const CoursePage: React.FC<RouterProps> = (props) => {
   const [data, setData] = React.useState<CourseInfo>();
@@ -23,7 +22,7 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
       const response = await request(
         "course/getCompleteCourseInfo/courseId=" + courseid
       );
-
+      console.log(response);
       setData(response);
     }
     fetchData();
@@ -35,12 +34,12 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
         <WhiteBox>
           <Row justifyContent="space-between" alignItems="center">
             <Col>
-              <H3>{data?.courseInfo.name}</H3>
-              <Body>{data?.courseInfo.description}</Body>
+              <H3>{data?.courseInfo?.name}</H3>
+              <Body>{data?.courseInfo?.description}</Body>
               <VSeparator half />
 
-              <Body>Duração: {data?.courseInfo.duration}</Body>
-              <Body>Dificuldade: {data?.courseInfo.difficulty}</Body>
+              <Body>Duração: {data?.courseInfo?.duration}</Body>
+              <Body>Dificuldade: {data?.courseInfo?.difficulty}</Body>
             </Col>
             <HSeparator huge />
             <MockCircle />
