@@ -7,19 +7,22 @@ import {
 } from "./CreateClassPage.style";
 import { H3, H4 } from "../../components/typography";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { PrimaryButton, VSeparator } from "../../components";
-import { VBox } from "../../components/theme/grid";
+import { Row, VBox } from "../../components/theme/grid";
 import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
-import { Footer } from "../../components/footer";
+import { postRequest } from "../../services/RequestService";
+import { RouterProps, useParams } from "react-router";
 
-export const CreateClassPage: React.FC = () => {
+export const CreateClassPage: React.FC<RouterProps> = (props) => {
   const [textSegments, setTextSegments] = React.useState<TextBlock[]>([]);
   const [questionSegments, setQuestionSegments] = React.useState<
     QuestionBlock[]
   >([]);
+
+  const { courseid, classid } =
+    useParams<{ courseid: string; classid: string }>();
 
   const alternatives = [];
 
@@ -51,7 +54,6 @@ export const CreateClassPage: React.FC = () => {
   interface QuestionBlock {
     title: string;
     alternatives: Array<{
-      id: number;
       text: string;
       correct: boolean;
     }>;
@@ -80,12 +82,15 @@ export const CreateClassPage: React.FC = () => {
         title: e.target.elements.title.value,
         image: e.target.elements.image.value,
         alternatives: [
-          e.target.elements.option1.value,
-          e.target.elements.option2.value,
-          e.target.elements.option3.value,
-          e.target.elements.option4.value,
-          e.target.elements.option5.value,
-          e.target.elements.option6.value,
+          {
+            text: e.target.elements.option1.value,
+            correct: true,
+          },
+          { text: e.target.elements.option2.value, correct: false },
+          { text: e.target.elements.option3.value, correct: false },
+          { text: e.target.elements.option4.value, correct: false },
+          { text: e.target.elements.option5.value, correct: false },
+          { text: e.target.elements.option6.value, correct: false },
         ],
         index: textSegments.length + questionSegments.length,
       };
@@ -93,6 +98,25 @@ export const CreateClassPage: React.FC = () => {
     },
     [setQuestionSegments, questionSegments]
   );
+
+  const handleCreate = React.useCallback((e: any) => {
+    e.preventDefault();
+    const postObject = {
+      name: e.target.elements.name.value,
+      difficulty: e.target.elements.difficulty.value,
+      index: classid,
+      courseId: courseid,
+      paragraphs: textSegments,
+      questions: questionSegments,
+    };
+    postRequest("class/create", postObject)
+      .then(() => {
+        props.history.goBack();
+      })
+      .catch(() => {
+        alert("Algo deu errado com a criação desta aula. Tente novamente.");
+      });
+  }, []);
 
   const handleDeleteTextSegment = React.useCallback(
     (textSegment: TextBlock) => {
@@ -125,6 +149,7 @@ export const CreateClassPage: React.FC = () => {
       <PageTitle>
         <H3>Crie uma aula</H3>
       </PageTitle>
+
       <Card>
         <H4>Crie um Card de texto</H4>
         <Form onSubmit={handleSubmitText}>
@@ -199,9 +224,50 @@ export const CreateClassPage: React.FC = () => {
         ))}
       </VBox>
 
-      <VSeparator />
-      <PrimaryButton>Submeter</PrimaryButton>
-      <VSeparator />
+      <Card>
+        <VBox>
+          <H3>Dados da Aula</H3>
+          <VSeparator />
+          <Form onSubmit={handleCreate}>
+            <Form.Group className="mb-3" controlId="name">
+              <Form.Label>Nome da aula</Form.Label>
+              <Form.Control type="name" placeholder="Nome da aula" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="difficulty">
+              <Form.Label>Dificuldade</Form.Label>
+
+              <Form.Check
+                name="difficulty"
+                type="radio"
+                id="easy"
+                label="Fácil"
+                value="Fácil"
+              />
+              <Form.Check
+                name="difficulty"
+                type="radio"
+                id="medium"
+                label="Médio"
+                value="Médio"
+              />
+              <Form.Check
+                name="difficulty"
+                type="radio"
+                id="hard"
+                label="Difícil"
+                value="Difícil"
+              />
+            </Form.Group>
+
+            <VSeparator />
+            <Row justifyContent="space-between" alignItems="center">
+              <PrimaryButton type="submit">Criar</PrimaryButton>
+            </Row>
+          </Form>
+        </VBox>
+      </Card>
+      <VSeparator huge />
     </CourseGrid>
   );
 };
