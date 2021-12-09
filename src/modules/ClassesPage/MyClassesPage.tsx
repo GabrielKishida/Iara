@@ -2,7 +2,6 @@ import React from "react";
 import { H2, VSeparator, HSeparator } from "../../components";
 import { ClassCard } from "../../components/card/class_card";
 import { Grid, Row, VBox } from "../../components/theme/grid";
-import { Footer } from "../../components/footer";
 
 const ROW_SIZE = 3;
 
