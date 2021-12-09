@@ -15,8 +15,7 @@ import { TextCard } from "../../components/TextCard/TextCard";
 import { QuestionCard } from "../../components/QuestionCard/QuestionCard";
 import { RouterProps, useParams } from "react-router-dom";
 import React from "react";
-import { Footer } from "../../components/footer";
-import { Row } from "../../components/theme/grid";
+import { VSeparator } from "../../components";
 
 export const ClassPage: React.FC<RouterProps> = (props) => {
   const { courseid } = useParams<{ courseid: string }>();
@@ -75,7 +74,7 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
         >
           Capítulos
         </PrimaryButton>
-
+        <VSeparator />
         <Offcanvas show={show} onHide={handleClose} placement="end">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Capítulos e Progresso</Offcanvas.Title>
@@ -163,9 +162,7 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
           Voltar para o curso
         </PrimaryButton>
       </div>
-      <Row style={{width:"100%"}}>
-        <Footer />
-      </Row>
+      <VSeparator />
     </CourseGrid>
   );
 };
