@@ -7,7 +7,7 @@ import {
 import { H3, H4, Body } from "../../components/typography";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { ProgressBar } from "react-bootstrap";
-import { useDebugValue, useState } from "react";
+import { useState } from "react";
 import { PrimaryButton } from "../../components/button/button";
 import { request } from "../../services/RequestService";
 import { Class } from "../../models/Class";
@@ -19,7 +19,6 @@ import { Footer } from "../../components/footer";
 import { Row } from "../../components/theme/grid";
 
 export const ClassPage: React.FC<RouterProps> = (props) => {
-
   const { courseid } = useParams<{ courseid: string }>();
 
   const { classid } = useParams<{ classid: string }>();
@@ -27,36 +26,32 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
   const nextClass = () => props.history.push("/course/" + courseid);
 
   const [classContent, setClassContent] = React.useState<Class>();
+  const [progress, setProgress] = useState(0);
+  const [isChecked, setIsChecked] = useState<Boolean[]>();
 
   React.useEffect(() => {
     async function fetchClass() {
       let response = await request("class/getCompleteClass/" + classid);
-      console.log(response)
       setClassContent(response);
     }
     fetchClass();
-  }, [setClassContent]);
+  }, [setClassContent, classid, request]);
 
-  React.useEffect(() =>{
+  React.useEffect(() => {
     if (classContent?.texts?.length)
       setIsChecked(new Array(classContent.texts.length).fill(false));
-  });
+  }, [setIsChecked, classContent]);
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [progress, setProgress] = useState(0);
-  const [isChecked, setIsChecked] = useState<Boolean[]>();
-
   const handleOnChange = (position: number) => {
     const updatedCheckedState = isChecked?.map((item, index) =>
       index === position ? !item : item
     );
-
     setIsChecked(updatedCheckedState);
-
     const totalProgress = updatedCheckedState?.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
@@ -92,24 +87,27 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
             </div>
             <H4>Capítulos</H4>
             <div>
-              {!!classContent && classContent?.texts?.map((value, index) => {
-                return (
-                  <Chapter
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Body>{value.classEntity?.name && value.classEntity?.name}</Body>
-                    <ChapterCheckbox
-                      type="checkbox"
-                      checked={!!isChecked?.[index] ?? false}
-                      onChange={() => handleOnChange(index)}
-                    />
-                  </Chapter>
-                );
-              })}
+              {!!classContent &&
+                classContent?.texts?.map((value, index) => {
+                  return (
+                    <Chapter
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Body>
+                        {value.classEntity?.name && value.classEntity?.name}
+                      </Body>
+                      <ChapterCheckbox
+                        type="checkbox"
+                        checked={!!isChecked?.[index] ?? false}
+                        onChange={() => handleOnChange(index)}
+                      />
+                    </Chapter>
+                  );
+                })}
             </div>
           </Offcanvas.Body>
         </Offcanvas>
@@ -146,22 +144,23 @@ export const ClassPage: React.FC<RouterProps> = (props) => {
                   width: "100%",
                 }}
               >
-              <div style={{ width: "100%", marginBottom: "100px" }}>
-                <QuestionCard
-                  title={value.question.title}
-                  image={value.question.image}
-                  alternatives={value.alternatives}
-                ></QuestionCard>
-              </div>
+                <div style={{ width: "100%", marginBottom: "100px" }}>
+                  <QuestionCard
+                    title={value.question.title}
+                    image={value.question.image}
+                    alternatives={value.alternatives}
+                  ></QuestionCard>
+                </div>
               </div>
             );
           })}
         </Course>
         <PrimaryButton
           variant="primary"
-          style={{float: "right"}}
-          onClick = {nextClass}>
-            Voltar para o curso
+          style={{ float: "right" }}
+          onClick={nextClass}
+        >
+          Voltar para o curso
         </PrimaryButton>
       </div>
       <Row style={{width:"100%"}}>

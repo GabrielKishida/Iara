@@ -23,7 +23,7 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
       const response = await request(
         "course/getCompleteCourseInfo/courseId=" + courseid
       );
-      console.log(response);
+
       setData(response);
     }
     fetchData();
@@ -70,7 +70,17 @@ export const CoursePage: React.FC<RouterProps> = (props) => {
                 <VSeparator />
                 {data?.classes?.map((topic: SimpleClass, index: number) => (
                   <Col>
-                    <Link to={"/class/" + courseid + "/" + index.toString()} style={{ textDecoration: 'none' }}>
+                    <Link
+                      to={
+                        "/class/" +
+                        courseid +
+                        "/" +
+                        topic.id_class +
+                        "&" +
+                        localStorage.getItem("userId")
+                      }
+                      style={{ textDecoration: "none" }}
+                    >
                       <Row alignItems="flex-start" justifyContent="flex-start">
                         <Col>
                           <MockSmallCircle />
